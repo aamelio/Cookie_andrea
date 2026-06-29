@@ -20,6 +20,7 @@
       \parbox[c][#1][c]{0.85\linewidth}{\centering\color{gray}\footnotesize FIGURE\\[3pt]#2}}%
   \end{center}}
 \newcommand{\src}[1]{\par\smallskip{\footnotesize\color{gray}#1}}
+\newcommand{\backbutton}[1]{\hfill\hyperlink{#1}{\beamerbutton{$\blacktriangleleft$ Back}}}
 
 \title{Price Elasticity and Context}
 \subtitle{Pilot overview: WTP, WTA, and binary choice}
@@ -52,9 +53,13 @@
 \end{frame}
 
 \begin{frame}{Two goods}
+  \hypertarget{main:two_goods}{}
   \begin{itemize}
     \item Cookies and toothpaste -- chosen to differ in how hedonic vs functional they are. ?
     \item Functionality measured: hedonicity $= 8 -$ raw Pleasure:Utility.
+    \item Product images in the appendix:
+      \hyperlink{app:cookies_products}{cookies brands} and
+      \hyperlink{app:toothpaste_products}{toothpaste brands}.
   \end{itemize}
 \end{frame}
 
@@ -157,10 +162,14 @@
 \end{frame}
 
 \begin{frame}{Binary choice: treatment arms}
+  \hypertarget{main:binary_arms}{}
   \begin{itemize}
     \item Across arms, the posted premium-versus-regular choice is the same; what changes is the treatment framing that precedes or accompanies that choice.
     \item `Control` is the baseline version of the binary choice.
     \item `Buying` and `Consumption` are the two key treatment versions used to compare how the framing changes premium take-up and attention.
+    \item Before choosing, participants describe the image prompt in their own words: what is happening, where, what the person is thinking, and the essence of the situation; they are told there is no right or wrong answer and are encouraged to think carefully and write as much as they would like.
+    \item Appendix link:
+      \hyperlink{app:binary_manipulations}{control / buying / consumption images}.
   \end{itemize}
 \end{frame}
 
@@ -273,6 +282,63 @@
   \src{OE elicitation comparison: joint vs isolated, KS, $\Delta$WTP (D4 Sec 2--3). \\
   Within-subject order (D1 Tables 9--10). LLM prompt (D3 App B).
   Fine-tuning LLM (next slide). Frozen vegetables (D2 App A). First stage (D3 Fig 4).}
+\end{frame}
+
+\begin{frame}{Appendix: Cookie brands}
+  \hypertarget{app:cookies_products}{}
+  \backbutton{main:two_goods}
+  \vspace{0.2cm}
+  \begin{columns}
+    \column{0.5\textwidth}
+    \centering
+    \textbf{Regular}\\[4pt]
+    \includegraphics[width=0.95\textwidth]{figures/cookies_regular.png}
+
+    \column{0.5\textwidth}
+    \centering
+    \textbf{Premium}\\[4pt]
+    \includegraphics[width=0.95\textwidth]{figures/cookies_premium.png}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Appendix: Toothpaste brands}
+  \hypertarget{app:toothpaste_products}{}
+  \backbutton{main:two_goods}
+  \vspace{0.25cm}
+  \begin{columns}
+    \column{0.5\textwidth}
+    \centering
+    \textbf{Regular}\\[6pt]
+    \includegraphics[width=\textwidth]{figures/toothpaste_regular.png}
+
+    \column{0.5\textwidth}
+    \centering
+    \textbf{Premium}\\[6pt]
+    \includegraphics[width=\textwidth]{figures/toothpaste_premium.png}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Appendix: Binary manipulation images}
+  \hypertarget{app:binary_manipulations}{}
+  \backbutton{main:binary_arms}
+  \vspace{0.15cm}
+  \begin{columns}
+    \column{0.5\textwidth}
+    \centering
+    \textbf{Control}\\[4pt]
+    \includegraphics[width=0.98\textwidth]{figures/manipulation_control.png}
+
+    \column{0.5\textwidth}
+    \centering
+    \textbf{Buying}\\[4pt]
+    \includegraphics[width=0.98\textwidth]{figures/manipulation_buying.png}
+  \end{columns}
+  \vspace{0.2cm}
+
+  \begin{center}
+    \textbf{Consumption}\\[4pt]
+    \includegraphics[height=0.33\textheight]{figures/manipulation_consumption.png}
+  \end{center}
 \end{frame}
 
 \begin{frame}{LLM measure: fine-tuned model}
