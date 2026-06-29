@@ -1,0 +1,241 @@
+% ============================================================
+%  Seminar deck 
+%  Docs: 
+% D1 Andrea wtp-wta gap
+% D2 Andrea hedonic (toothpaste; functionality; elasticity)
+% D3 Runping 6/19 (LLM attention; gap)
+% D4 Runping 4/2 (mechanism/mediation)
+% ============================================================
+
+\documentclass[10pt]{beamer}   % 4:3
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}[frame number]
+\usepackage{graphicx}
+
+\newcommand{\ph}[2][0.42\textheight]{%
+  \begin{center}%
+    \setlength{\fboxsep}{8pt}%
+    \fcolorbox{gray!50}{gray!8}{%
+      \parbox[c][#1][c]{0.85\linewidth}{\centering\color{gray}\footnotesize FIGURE\\[3pt]#2}}%
+  \end{center}}
+\newcommand{\src}[1]{\par\smallskip{\footnotesize\color{gray}#1}}
+
+\title{Price Elasticity and Context}
+\subtitle{Pilot overview: WTP, WTA, and binary choice}
+
+\date{\today}
+
+\begin{document}
+
+\begin{frame}[plain]\titlepage\end{frame}
+\begin{frame}{Outline}\tableofcontents\end{frame}
+
+% ============================================================
+\section{Motivation}
+% ============================================================
+
+\begin{frame}{The big question}
+  \begin{itemize}
+    \item Price elasticity of premium take-up: how much premium demand falls as the price gap rises.
+    \item Two objects: (i) the elasticity, (ii) the WTP--WTA gap.
+    \item Project claim: this parameter is not stable, and not driven by income. ?
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Framing: two reference papers}
+  \begin{itemize}
+    \item Wakefield \& Inman: elasticity varies across situations -- unstable.
+    \item Loewenstein (thrift): elasticity varies independently of income/wealth.
+  \end{itemize}
+  \ph[0.3\textheight]{ or quote? one exhibit from WI; one from Loewenstein ?}
+\end{frame}
+
+\begin{frame}{Two goods}
+  \begin{itemize}
+    \item Cookies and toothpaste -- chosen to differ in how hedonic vs functional they are. ?
+    \item Functionality measured: hedonicity $= 8 -$ raw Pleasure:Utility.
+  \end{itemize}
+\end{frame}
+
+% ============================================================
+\section{Design}
+% ============================================================
+
+\begin{frame}{Three key treatments}
+  \begin{itemize}
+    \item WTP --- within-subject MPL, both brands (Control only; priming is in Binary).
+    \item WTA strong --- MPL, premium brand. \textcolor{red}{toothpaste run?}
+    \item Binary choice --- Control / Buying / Consumption. Between-subjects.
+  \end{itemize}
+  \ph[0.28\textheight]{task summary table}
+  \src{D1 Table 1/4/App-11; D2 Table 1 for N.}
+\end{frame}
+
+\begin{frame}{Measures}
+  \begin{itemize}
+    \item Attention (price vs quality):
+      \begin{itemize}
+        \item self-reported category + price weight;
+        \item LLM category + valence (prompt-based);
+        \item LLM price weight (0--100) from a fine-tuned model -- see appendix.
+      \end{itemize}
+    \item Functionality: Pleasure:Utility.
+  \end{itemize}
+  \src{LLM prompt + fine-tuned model, appendix (D3).}
+\end{frame}
+
+% ============================================================
+\section{Binary alone}
+% ============================================================
+
+\begin{frame}{Premium share by treatment}
+  Buying lowers premium choice (both goods); consumption raises it for cookies, not for toothpaste. ?
+  \begin{columns}
+    \column{0.5\textwidth}\centering Cookies\\[2pt]\ph[0.4\textheight]{premium share by arm}
+    \column{0.5\textwidth}\centering Toothpaste\\[2pt]\ph[0.4\textheight]{premium share by arm}
+  \end{columns}
+  \src{Cookies D1 Table 2 (0.69/0.51/0.72); toothpaste D2 Fig 3 (0.51/0.38/0.56).}
+\end{frame}
+
+\begin{frame}{Attention by treatment}
+  Binary attention is mostly on quality; consumption pushes it further. ?
+  \begin{columns}
+    \column{0.5\textwidth}\centering Cookies\\[2pt]\ph[0.4\textheight]{attention by arm}
+    \column{0.5\textwidth}\centering Toothpaste\\[2pt]\ph[0.4\textheight]{wq by arm}
+  \end{columns}
+  \src{Cookies D1 Table 3, D4 Fig 11. Toothpaste D2 wq only (64.8/60.1/70.5).}
+\end{frame}
+
+\begin{frame}{Attention is the channel}
+  Adding attention absorbs most of the priming effect on choice (D4). ?
+  \ph[0.36\textheight]{treatment -> attention -> choice; R\textsuperscript{2} step-up}
+  \src{D4 Table 4 (priming coef $-0.22 \to -0.06$; R\textsuperscript{2} $0.07 \to 0.53$), Table 3.}
+\end{frame}
+
+\begin{frame}{Functionality by treatment}
+  Premium choice by how hedonic vs functional the good is. ?
+  \begin{columns}
+    \column{0.5\textwidth}\centering Cookies\\[2pt]\ph[0.4\textheight]{by P:U group ?}
+    \column{0.5\textwidth}\centering Toothpaste\\[2pt]\ph[0.4\textheight]{by P:U group}
+  \end{columns}
+  \src{Toothpaste D2 Fig 2 (P:U 1--4/5--6/7). Cookies ?}
+\end{frame}
+
+% ============================================================
+\section{Binary vs WTP}
+% ============================================================
+
+\begin{frame}{Take-up: WTP vs Binary (Control dropped)}
+  Same price gap, very different take-up -- elasticity is not stable.
+  \begin{columns}
+    \column{0.5\textwidth}\centering Cookies\\[2pt]\ph[0.4\textheight]{WTP / Bin-B / Bin-Cons}
+    \column{0.5\textwidth}\centering Toothpaste\\[2pt]\ph[0.4\textheight]{WTP / Bin-B / Bin-Cons}
+  \end{columns}
+  \src{D2 Fig 3, Control removed. Cookies 0.36/0.51/0.72; toothpaste 0.27/0.38/0.56.}
+\end{frame}
+
+\begin{frame}{Demand curve and elasticity}
+  WTP traces a demand curve; framing shifts are equivalent to large price cuts.
+  \ph{WTP-implied demand curves (both goods), binary points overlaid}
+  \src{D2 Fig 5/6, Table 3/4. Elasticity $-0.91$ / $-1.32$. Gap cut Buying$\to$Cons 69\%/63\%.}
+\end{frame}
+
+\begin{frame}{Attention tracks take-up across tasks}
+  Across all tasks, more quality attention goes with higher premium take-up. ?
+  \ph[0.4\textheight]{premium take-up vs relative quality attention (wq/wp), by task}
+  \src{D3 Fig 2 (self-reported) and Fig 3 (LLM); D3 Table 4 (attention predicts take-up).}
+\end{frame}
+
+% ============================================================
+\section{WTP--WTA gap}
+% ============================================================
+
+\begin{frame}{The observed gap}
+  Selling (WTA strong) values the premium good above buying (WTP).
+  \ph{premium valuation: WTP / WTA weak / WTA strong}
+  \src{D1 Fig 5 / Table 5 (cookies): 4.07/4.28/4.55; strong gap $+0.48$, p$=0.002$. Toothpaste ?}
+\end{frame}
+
+\begin{frame}{Attention and the gap}
+  Not more overall price focus -- under WTA, price reasoning shifts to reference price (LLM). ?
+  \ph[0.36\textheight]{attention shift under WTA / decomposition}
+  \src{D3 Fig 6 (reference price), D1 Fig 6, D3 Table 7 (Gelbach: price weight $\approx 0$).}
+\end{frame}
+
+\begin{frame}{Combining self-reported and LLM}
+  Self-reported says how much price matters; LLM says where it comes from. Combined, they explain most of the gap. ?
+  \ph[0.34\textheight]{observed vs predicted gap, by measure set}
+  \src{D3 Fig 5 (combined: weak 101\% / strong 54\%; SR alone 16\%).}
+\end{frame}
+
+% ============================================================
+\section{Heterogeneity}
+% ============================================================
+
+\begin{frame}{Approach}
+  \begin{itemize}
+    \item Splits along income, thrift, functionality.
+    \item Across Binary / WTP / WTA strong, not only consumption-vs-buying.
+    \item Orthogonalize: thrift within income brackets, and vice versa.
+    \item \alert{Underpowered in pilots -- exploratory.}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Income and thrift splits}
+  Effects concentrate in some groups; income and thrift differ. ?
+  \ph{\{income, thrift\} $\times$ \{Binary / WTP / WTA\} ?}
+  \src{D3 Fig 8 (Binary), Fig 10 (WTA gap, low-inc 0.71 vs high $-0.18$).
+  Redo on key treatments + WTP levels + toothpaste -- all D3. ?}
+\end{frame}
+
+\begin{frame}{Functionality splits}
+  Does the response differ by hedonic vs functional good? ?
+  \ph{functionality $\times$ \{Binary / WTP / WTA\} ?}
+  \src{D2 Fig 2 (toothpaste Binary). Extend to cookies + WTP + WTA -- all D2. ?}
+\end{frame}
+
+\begin{frame}{Orthogonalized income $\times$ thrift}
+  Holding income fixed, does thrift still matter -- and vice versa?
+  \ph{2$\times$2: (high/low income) $\times$ (high/low thrift) ?}
+  \src{New analysis (D3). Pick one outcome first. D3 Fig 11 motivates it.}
+\end{frame}
+
+% ============================================================
+\section{Roadmap}
+% ============================================================
+
+\begin{frame}{Toward the preregistered experiment}
+  \begin{itemize}
+    \item Sample size for 2$\times$2 income$\times$thrift splits.
+    \item Toothpaste WTA strong?
+    \item LLM on toothpaste reasoning?
+  \end{itemize}
+\end{frame}
+
+% ============================================================
+\appendix
+% ============================================================
+\begin{frame}{Appendix}
+  \src{OE elicitation comparison: joint vs isolated, KS, $\Delta$WTP (D4 Sec 2--3). \\
+  Within-subject order (D1 Tables 9--10). LLM prompt (D3 App B).
+  Fine-tuning LLM (next slide). Frozen vegetables (D2 App A). First stage (D3 Fig 4).}
+\end{frame}
+
+\begin{frame}{LLM measure: fine-tuned model}
+  How the continuous LLM price weight is produced. A small model that ``reasons''
+  before answering: GPT-5 writes the reasoning, GPT-4.1-mini learns to imitate it.
+  \begin{enumerate}
+    \item \textbf{Data:} 3{,}500 (text, self-reported weight) pairs as chat examples.
+      Target bin from the self-report (weight 65 $\to$ BIN\_6); the linguistic
+      analysis is GPT-5's, generated from text alone (does not see the self-report).
+    \item \textbf{Train:} supervised fine-tuning of GPT-4.1-mini (Azure), $\sim$3h;
+      learns text $\to$ analysis $+$ bin.
+    \item \textbf{Inference:} take the top-10 logprobs over the bin digit, not the argmax;
+      weight bin midpoints to a continuous 0--100 score
+      ($\sum_i \text{midpoint}_i \times p_i$).
+  \end{enumerate}
+  \src{This weight feeds the combined SR+LLM measure shown earlier. Validation.}
+\end{frame}
+
+\end{document}
