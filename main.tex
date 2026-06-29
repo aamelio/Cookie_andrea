@@ -131,13 +131,17 @@
 
 \begin{frame}{The observed gap}
   Selling (WTA strong) values the premium good above buying (WTP).
-  \ph{premium valuation: WTP / WTA weak / WTA strong}
+  \begin{center}
+    \includegraphics[width=0.76\textwidth]{figures/wta_strong_cookies_price_distribution.png}
+  \end{center}
   \src{D1 Fig 5 / Table 5 (cookies): 4.07/4.28/4.55; strong gap $+0.48$, p$=0.002$. Toothpaste ?}
 \end{frame}
 
 \begin{frame}{Attention and the gap}
   Not more overall price focus -- under WTA, price reasoning shifts to reference price (LLM). ?
-  \ph[0.36\textheight]{attention shift under WTA / decomposition}
+  \begin{center}
+    \includegraphics[width=0.76\textwidth]{figures/wta_strong_cookies_q_over_p_distribution.png}
+  \end{center}
   \src{D3 Fig 6 (reference price), D1 Fig 6, D3 Table 7 (Gelbach: price weight $\approx 0$).}
 \end{frame}
 
@@ -173,8 +177,8 @@
 \begin{frame}{Premium share by treatment}
   Buying lowers premium choice (both goods); consumption raises it for cookies, not for toothpaste. ?
   \begin{columns}
-    \column{0.5\textwidth}\centering Cookies\\[2pt]\ph[0.4\textheight]{premium share by arm}
-    \column{0.5\textwidth}\centering Toothpaste\\[2pt]\ph[0.4\textheight]{premium share by arm}
+    \column{0.5\textwidth}\centering Cookies\\[2pt]\includegraphics[width=\textwidth]{figures/binary_cookies_premium_share.png}
+    \column{0.5\textwidth}\centering Toothpaste\\[2pt]\includegraphics[width=\textwidth]{figures/binary_toothpaste_premium_share.png}
   \end{columns}
   \src{Cookies D1 Table 2 (0.69/0.51/0.72); toothpaste D2 Fig 3 (0.51/0.38/0.56).}
 \end{frame}
@@ -182,8 +186,8 @@
 \begin{frame}{Attention by treatment}
   Binary attention is mostly on quality; consumption pushes it further. ?
   \begin{columns}
-    \column{0.5\textwidth}\centering Cookies\\[2pt]\ph[0.4\textheight]{attention by arm}
-    \column{0.5\textwidth}\centering Toothpaste\\[2pt]\ph[0.4\textheight]{wq by arm}
+    \column{0.5\textwidth}\centering Cookies\\[2pt]\includegraphics[width=\textwidth]{figures/binary_cookies_attention_vs_premium_share.png}
+    \column{0.5\textwidth}\centering Toothpaste\\[2pt]\includegraphics[width=\textwidth]{figures/binary_toothpaste_attention_vs_premium_share.png}
   \end{columns}
   \src{Cookies D1 Table 3, D4 Fig 11. Toothpaste D2 wq only (64.8/60.1/70.5).}
 \end{frame}
@@ -210,21 +214,26 @@
 \begin{frame}{Take-up: WTP vs Binary (Control dropped)}
   Same price gap, very different take-up -- elasticity is not stable.
   \begin{columns}
-    \column{0.5\textwidth}\centering Cookies\\[2pt]\ph[0.4\textheight]{WTP / Bin-B / Bin-Cons}
-    \column{0.5\textwidth}\centering Toothpaste\\[2pt]\ph[0.4\textheight]{WTP / Bin-B / Bin-Cons}
+    \column{0.5\textwidth}\centering Cookies\\[2pt]\includegraphics[width=\textwidth]{figures/cross_condition_cookies_premium_share.png}
+    \column{0.5\textwidth}\centering Toothpaste\\[2pt]\includegraphics[width=\textwidth]{figures/cross_condition_toothpaste_premium_share.png}
   \end{columns}
   \src{D2 Fig 3, Control removed. Cookies 0.36/0.51/0.72; toothpaste 0.27/0.38/0.56.}
 \end{frame}
 
 \begin{frame}{Demand curve and elasticity}
   WTP traces a demand curve; framing shifts are equivalent to large price cuts.
-  \ph{WTP-implied demand curves (both goods), binary points overlaid}
+  \begin{center}
+    \includegraphics[width=0.8\textwidth]{figures/cross_condition_cookies_tooth_wtp_demand_curves.png}
+  \end{center}
   \src{D2 Fig 5/6, Table 3/4. Elasticity $-0.91$ / $-1.32$. Gap cut Buying$\to$Cons 69\%/63\%.}
 \end{frame}
 
 \begin{frame}{Attention tracks take-up across tasks}
   Across all tasks, more quality attention goes with higher premium take-up. ?
-  \ph[0.4\textheight]{premium take-up vs relative quality attention (wq/wp), by task}
+  \begin{columns}
+    \column{0.5\textwidth}\centering Cookies\\[2pt]\includegraphics[width=\textwidth]{figures/cross_condition_cookies_attention_vs_premium_share.png}
+    \column{0.5\textwidth}\centering Toothpaste\\[2pt]\includegraphics[width=\textwidth]{figures/cross_condition_toothpaste_attention_vs_premium_share.png}
+  \end{columns}
   \src{D3 Fig 2 (self-reported) and Fig 3 (LLM); D3 Table 4 (attention predicts take-up).}
 \end{frame}
 
