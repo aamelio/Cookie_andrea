@@ -10,7 +10,16 @@
 \documentclass[10pt]{beamer}   % 4:3
 
 \setbeamertemplate{navigation symbols}{}
-\setbeamertemplate{footline}[frame number]
+\setbeamertemplate{footline}{%
+  \leavevmode%
+  \hbox{%
+    \hfill%
+    \usebeamerfont{page number in head/foot}%
+    \usebeamercolor[fg]{page number in head/foot}%
+    \insertframenumber\hspace{1em}%
+  }%
+  \vskip2pt%
+}
 \usepackage{graphicx}
 \usepackage{booktabs}
 
@@ -74,7 +83,7 @@
   \hypertarget{main:two_goods}{}
   \begin{itemize}
     \item We study two goods: cookies and toothpaste.
-    \item These goods are useful because they differ in their level of functionality/hedonicity.
+    \item These goods are useful because they differ in their level of functionality/hedonicity (\hyperlink{app:functionality_compare}{see appendix}).
     \item Within each good, the key comparison is between a regular and a premium brand
       (\hyperlink{app:cookies_products}{cookies}; \hyperlink{app:toothpaste_products}{toothpaste}).
   \end{itemize}
@@ -235,7 +244,7 @@
 
 \begin{frame}{Implied price gap by good and condition}
   \begin{center}
-    \small
+    \scriptsize
     \input{tables/cross_condition_implied_gap_table.tex}
   \end{center}
 \end{frame}
@@ -405,6 +414,20 @@
   \begin{center}
     \includegraphics[height=0.72\textheight]{figures/manipulation_consumption.png}
   \end{center}
+\end{frame}
+
+\begin{frame}{Appendix: Functionality by product}
+  \hypertarget{app:functionality_compare}{}
+  \backbutton{main:two_goods}
+  \vspace{0.15cm}
+  \begin{center}
+    \includegraphics[width=0.72\textwidth]{figures/cookies_toothpaste_functionality_comparison.png}
+  \end{center}
+  \vspace{0.1cm}
+  {\footnotesize
+  Question used:
+
+  ``In your everyday life, do you purchase PRODUCTNAME predominantly for pleasure or for its utility?''}
 \end{frame}
 
 \begin{frame}{Appendix: WTP within attention, multiple-choice version}
