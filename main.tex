@@ -155,11 +155,13 @@
 \end{frame}
 
 \begin{frame}{Attention and the gap}
-  Not more overall price focus -- under WTA, price reasoning shifts to reference price (LLM). ?
+  \hypertarget{main:wta_attention}{}
+  \hfill\hyperlink{app:wta_attention_ratio}{\beamerbutton{Weight-ratio version}}
+  \medskip
+  Higher premium valuations under WTA strong also coincide with a higher share of participants naming quality as the main consideration.
   \begin{center}
-    \includegraphics[width=0.76\textwidth]{figures/aaa.png}
+    \includegraphics[width=0.75\textwidth]{figures/wta_strong_cookies_quality_share_vs_price.png}
   \end{center}
-  \src{D3 Fig 6 (reference price), D1 Fig 6, D3 Table 7 (Gelbach: price weight $\approx 0$).}
 \end{frame}
 
 \begin{frame}{Combining self-reported and LLM}
@@ -198,10 +200,13 @@
   \end{columns}
 \end{frame}
 
-\begin{frame}{Attention and Premium Share by treatment}
+\begin{frame}{Quality attention and premium share by treatment}
+  \hypertarget{main:binary_attention}{}
+  \hfill\hyperlink{app:binary_attention_ratio}{\beamerbutton{Weight-ratio version}}
+  \medskip
   \begin{columns}
-    \column{0.5\textwidth}\centering Cookies\\[2pt]\includegraphics[width=\textwidth]{figures/binary_cookies_attention_vs_premium_share.png}
-    \column{0.5\textwidth}\centering Toothpaste\\[2pt]\includegraphics[width=\textwidth]{figures/binary_toothpaste_attention_vs_premium_share.png}
+    \column{0.5\textwidth}\centering Cookies\\[2pt]\includegraphics[width=\textwidth]{figures/binary_cookies_quality_share_vs_premium_share.png}
+    \column{0.5\textwidth}\centering Toothpaste\\[2pt]\includegraphics[width=\textwidth]{figures/binary_toothpaste_quality_share_vs_premium_share.png}
   \end{columns}
 
 \end{frame}
@@ -232,11 +237,14 @@
   \end{columns}
 \end{frame}
 
-\begin{frame}{Attention tracks take-up across tasks}
-  Across all tasks, more quality attention goes with higher premium take-up. ?
+\begin{frame}{Quality attention tracks take-up across tasks}
+  \hypertarget{main:cross_attention}{}
+  \hfill\hyperlink{app:cross_attention_ratio}{\beamerbutton{Weight-ratio version}}
+  \medskip
+  Across all tasks, a higher share naming quality as the main consideration goes with higher premium take-up. ?
   \begin{columns}
-    \column{0.5\textwidth}\centering Cookies\\[2pt]\includegraphics[width=\textwidth]{figures/cross_condition_cookies_attention_vs_premium_share.png}
-    \column{0.5\textwidth}\centering Toothpaste\\[2pt]\includegraphics[width=\textwidth]{figures/cross_condition_toothpaste_attention_vs_premium_share.png}
+    \column{0.5\textwidth}\centering Cookies\\[2pt]\includegraphics[width=\textwidth]{figures/cross_condition_cookies_quality_share_vs_premium_share.png}
+    \column{0.5\textwidth}\centering Toothpaste\\[2pt]\includegraphics[width=\textwidth]{figures/cross_condition_toothpaste_quality_share_vs_premium_share.png}
   \end{columns}
   \src{D3 Fig 2 (self-reported) and Fig 3 (LLM); D3 Table 4 (attention predicts take-up).}
 \end{frame}
@@ -378,6 +386,49 @@
   \begin{center}
     \includegraphics[height=0.72\textheight]{figures/manipulation_consumption.png}
   \end{center}
+\end{frame}
+
+\begin{frame}{Appendix: WTA attention, weight-ratio version}
+  \hypertarget{app:wta_attention_ratio}{}
+  \backbutton{main:wta_attention}
+  \vspace{0.2cm}
+  \begin{center}
+    \includegraphics[width=0.75\textwidth]{figures/wta_strong_cookies_ratio_vs_price.png}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Appendix: Binary attention, weight-ratio version}
+  \hypertarget{app:binary_attention_ratio}{}
+  \backbutton{main:binary_attention}
+  \vspace{0.2cm}
+  \begin{columns}
+    \column{0.5\textwidth}
+    \centering
+    Cookies\\[2pt]
+    \includegraphics[width=\textwidth]{figures/binary_cookies_attention_vs_premium_share.png}
+
+    \column{0.5\textwidth}
+    \centering
+    Toothpaste\\[2pt]
+    \includegraphics[width=\textwidth]{figures/binary_toothpaste_attention_vs_premium_share.png}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Appendix: Cross-condition attention, weight-ratio version}
+  \hypertarget{app:cross_attention_ratio}{}
+  \backbutton{main:cross_attention}
+  \vspace{0.2cm}
+  \begin{columns}
+    \column{0.5\textwidth}
+    \centering
+    Cookies\\[2pt]
+    \includegraphics[width=\textwidth]{figures/cross_condition_cookies_attention_vs_premium_share.png}
+
+    \column{0.5\textwidth}
+    \centering
+    Toothpaste\\[2pt]
+    \includegraphics[width=\textwidth]{figures/cross_condition_toothpaste_attention_vs_premium_share.png}
+  \end{columns}
 \end{frame}
 
 \begin{frame}{LLM measure: fine-tuned model}
