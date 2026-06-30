@@ -89,6 +89,54 @@
   \src{LLM prompt + fine-tuned model, appendix (D3).}
 \end{frame}
 
+\section{Binary}
+% ============================================================
+
+\begin{frame}{Binary choice: task structure}
+  \begin{itemize}
+    \item Participants choose directly between the regular and premium brand at posted prices.
+    \item The two options are shown jointly, so the participant makes one side-by-side choice rather than separate valuations.
+    \item The design is between-subjects, with three treatment arms: Control, Buying, and Consumption.
+    \item The main behavioral outcome is whether the participant chooses the premium option.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Binary choice: treatment arms}
+  \hypertarget{main:binary_arms}{}
+  \begin{itemize}
+    \item Across arms, the posted premium-versus-regular choice is the same; what changes is the treatment framing that precedes or accompanies that choice.
+    \item `Control` is the baseline version of the binary choice (\hyperlink{app:manipulation_control}{link}).
+    \item `Buying` is one treatment version (\hyperlink{app:manipulation_buying}{link}).
+    \item `Consumption` is the other treatment version (\hyperlink{app:manipulation_consumption_cookies}{cookies}; \hyperlink{app:manipulation_consumption_toothpaste}{toothpaste}).
+    \item Before choosing, participants describe the image prompt in their own words: what is happening, where, what the person is thinking, and the essence of the situation; they are told there is no right or wrong answer and are encouraged to think carefully and write as much as they would like.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Premium share by treatment}
+  \begin{columns}
+    \column{0.5\textwidth}\centering Cookies\\[2pt]\includegraphics[width=\textwidth]{figures/binary_cookies_premium_share.png}
+    \column{0.5\textwidth}\centering Toothpaste\\[2pt]\includegraphics[width=\textwidth]{figures/binary_toothpaste_premium_share.png}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Attention and premium share by treatment}
+  \hypertarget{main:binary_attention}{}
+  \hfill\hyperlink{app:binary_attention_multiple_choice}{\beamerbutton{Multiple-choice version}}
+  \medskip
+  \begin{columns}
+    \column{0.5\textwidth}\centering Cookies\\[2pt]\includegraphics[width=\textwidth]{figures/binary_cookies_attention_vs_premium_share.png}
+    \column{0.5\textwidth}\centering Toothpaste\\[2pt]\includegraphics[width=\textwidth]{figures/binary_toothpaste_attention_vs_premium_share.png}
+  \end{columns}
+
+\end{frame}
+
+\begin{frame}{Attention is the channel}
+  Adding attention absorbs most of the priming effect on choice (D4). ?
+  \ph[0.36\textheight]{treatment -> attention -> choice; R\textsuperscript{2} step-up}
+  \src{D4 Table 4 (priming coef $-0.22 \to -0.06$; R\textsuperscript{2} $0.07 \to 0.53$), Table 3.}
+\end{frame}
+
+
 % ============================================================
 \section{WTP within}
 % ============================================================
@@ -120,22 +168,60 @@
   \end{columns}
 \end{frame}
 
-\begin{frame}{WTP within: valuations and quality attention by product}
+\begin{frame}{WTP within: valuations and attention by product}
   \hypertarget{main:wtp_within_attention}{}
-  \hfill\hyperlink{app:wtp_within_attention_ratio}{\beamerbutton{Weight-ratio version}}
+  \hfill\hyperlink{app:wtp_within_attention_multiple_choice}{\beamerbutton{Multiple-choice version}}
   \medskip
   \begin{columns}
     \column{0.5\textwidth}\centering Cookies\\[2pt]
-    \includegraphics[width=\textwidth]{figures/wtp_within_cookies_quality_share_vs_price.png}
+    \includegraphics[width=\textwidth]{figures/wtp_within_cookies_ratio_vs_price.png}
 
     \column{0.5\textwidth}\centering Toothpaste\\[2pt]
-    \includegraphics[width=\textwidth]{figures/wtp_within_toothpaste_quality_share_vs_price.png}
+    \includegraphics[width=\textwidth]{figures/wtp_within_toothpaste_ratio_vs_price.png}
   \end{columns}
 \end{frame}
 
 \begin{frame}{Premium demand and price elasticity by good}
   \begin{center}
     \includegraphics[width=\textwidth]{figures/wtp_within_cookies_tooth_local_elasticity.png}
+  \end{center}
+\end{frame}
+
+% ============================================================
+\section{Cross-condition comparison}
+% ============================================================
+
+\begin{frame}{Take-up: WTP vs Binary (Control dropped)}
+  \begin{columns}
+    \column{0.5\textwidth}\centering Cookies\\[2pt]\includegraphics[width=\textwidth]{figures/cross_condition_cookies_premium_share.png}
+    \column{0.5\textwidth}\centering Toothpaste\\[2pt]\includegraphics[width=\textwidth]{figures/cross_condition_toothpaste_premium_share.png}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Attention tracks take-up across tasks}
+  \hypertarget{main:cross_attention}{}
+  \hfill\hyperlink{app:cross_attention_multiple_choice}{\beamerbutton{Multiple-choice version}}
+  \medskip
+  Across all tasks, more quality attention goes with higher premium take-up. ?
+  \begin{columns}
+    \column{0.5\textwidth}\centering Cookies\\[2pt]\includegraphics[width=\textwidth]{figures/cross_condition_cookies_attention_vs_premium_share.png}
+    \column{0.5\textwidth}\centering Toothpaste\\[2pt]\includegraphics[width=\textwidth]{figures/cross_condition_toothpaste_attention_vs_premium_share.png}
+  \end{columns}
+  \src{D3 Fig 2 (self-reported) and Fig 3 (LLM); D3 Table 4 (attention predicts take-up).}
+\end{frame}
+
+
+\begin{frame}{Demand curve and elasticity}
+  WTP traces a demand curve; framing shifts are equivalent to large price cuts.
+  \begin{center}
+    \includegraphics[width=\textwidth]{figures/cross_condition_cookies_tooth_wtp_demand_curves.png}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Implied price gap by good and condition}
+  \begin{center}
+    \small
+    \input{tables/cross_condition_implied_gap_table.tex}
   \end{center}
 \end{frame}
 
@@ -169,11 +255,10 @@
 
 \begin{frame}{Attention and the gap}
   \hypertarget{main:wta_attention}{}
-  \hfill\hyperlink{app:wta_attention_ratio}{\beamerbutton{Weight-ratio version}}
+  \hfill\hyperlink{app:wta_attention_multiple_choice}{\beamerbutton{Multiple-choice version}}
   \medskip
-  Higher premium valuations under WTA strong also coincide with a higher share of participants naming quality as the main consideration.
   \begin{center}
-    \includegraphics[width=0.75\textwidth]{figures/wta_strong_cookies_quality_share_vs_price.png}
+    \includegraphics[width=0.75\textwidth]{figures/wta_strong_cookies_ratio_vs_price.png}
   \end{center}
 \end{frame}
 
@@ -181,92 +266,6 @@
   Self-reported says how much price matters; LLM says where it comes from. Combined, they explain most of the gap. ?
   \ph[0.34\textheight]{observed vs predicted gap, by measure set}
   \src{D3 Fig 5 (combined: weak 101\% / strong 54\%; SR alone 16\%).}
-\end{frame}
-
-\section{Binary}
-% ============================================================
-
-\begin{frame}{Binary choice: task structure}
-  \begin{itemize}
-    \item Participants choose directly between the regular and premium brand at posted prices.
-    \item The two options are shown jointly, so the participant makes one side-by-side choice rather than separate valuations.
-    \item The design is between-subjects, with three treatment arms: Control, Buying, and Consumption.
-    \item The main behavioral outcome is whether the participant chooses the premium option.
-  \end{itemize}
-\end{frame}
-
-\begin{frame}{Binary choice: treatment arms}
-  \hypertarget{main:binary_arms}{}
-  \begin{itemize}
-    \item Across arms, the posted premium-versus-regular choice is the same; what changes is the treatment framing that precedes or accompanies that choice.
-    \item `Control` is the baseline version of the binary choice (\hyperlink{app:manipulation_control}{link}).
-    \item `Buying` is one treatment version (\hyperlink{app:manipulation_buying}{link}).
-    \item `Consumption` is the other treatment version (\hyperlink{app:manipulation_consumption_cookies}{cookies}; \hyperlink{app:manipulation_consumption_toothpaste}{toothpaste}).
-    \item Before choosing, participants describe the image prompt in their own words: what is happening, where, what the person is thinking, and the essence of the situation; they are told there is no right or wrong answer and are encouraged to think carefully and write as much as they would like.
-  \end{itemize}
-\end{frame}
-
-\begin{frame}{Premium share by treatment}
-  \begin{columns}
-    \column{0.5\textwidth}\centering Cookies\\[2pt]\includegraphics[width=\textwidth]{figures/binary_cookies_premium_share.png}
-    \column{0.5\textwidth}\centering Toothpaste\\[2pt]\includegraphics[width=\textwidth]{figures/binary_toothpaste_premium_share.png}
-  \end{columns}
-\end{frame}
-
-\begin{frame}{Quality attention and premium share by treatment}
-  \hypertarget{main:binary_attention}{}
-  \hfill\hyperlink{app:binary_attention_ratio}{\beamerbutton{Weight-ratio version}}
-  \medskip
-  \begin{columns}
-    \column{0.5\textwidth}\centering Cookies\\[2pt]\includegraphics[width=\textwidth]{figures/binary_cookies_quality_share_vs_premium_share.png}
-    \column{0.5\textwidth}\centering Toothpaste\\[2pt]\includegraphics[width=\textwidth]{figures/binary_toothpaste_quality_share_vs_premium_share.png}
-  \end{columns}
-
-\end{frame}
-
-\begin{frame}{Attention is the channel}
-  Adding attention absorbs most of the priming effect on choice (D4). ?
-  \ph[0.36\textheight]{treatment -> attention -> choice; R\textsuperscript{2} step-up}
-  \src{D4 Table 4 (priming coef $-0.22 \to -0.06$; R\textsuperscript{2} $0.07 \to 0.53$), Table 3.}
-\end{frame}
-
-
-% ============================================================
-\section{Cross-condition comparison}
-% ============================================================
-
-\begin{frame}{Take-up: WTP vs Binary (Control dropped)}
-  \begin{columns}
-    \column{0.5\textwidth}\centering Cookies\\[2pt]\includegraphics[width=\textwidth]{figures/cross_condition_cookies_premium_share.png}
-    \column{0.5\textwidth}\centering Toothpaste\\[2pt]\includegraphics[width=\textwidth]{figures/cross_condition_toothpaste_premium_share.png}
-  \end{columns}
-\end{frame}
-
-\begin{frame}{Quality attention tracks take-up across tasks}
-  \hypertarget{main:cross_attention}{}
-  \hfill\hyperlink{app:cross_attention_ratio}{\beamerbutton{Weight-ratio version}}
-  \medskip
-  Across all tasks, a higher share naming quality as the main consideration goes with higher premium take-up. ?
-  \begin{columns}
-    \column{0.5\textwidth}\centering Cookies\\[2pt]\includegraphics[width=\textwidth]{figures/cross_condition_cookies_quality_share_vs_premium_share.png}
-    \column{0.5\textwidth}\centering Toothpaste\\[2pt]\includegraphics[width=\textwidth]{figures/cross_condition_toothpaste_quality_share_vs_premium_share.png}
-  \end{columns}
-  \src{D3 Fig 2 (self-reported) and Fig 3 (LLM); D3 Table 4 (attention predicts take-up).}
-\end{frame}
-
-
-\begin{frame}{Demand curve and elasticity}
-  WTP traces a demand curve; framing shifts are equivalent to large price cuts.
-  \begin{center}
-    \includegraphics[width=\textwidth]{figures/cross_condition_cookies_tooth_wtp_demand_curves.png}
-  \end{center}
-\end{frame}
-
-\begin{frame}{Implied price gap by good and condition}
-  \begin{center}
-    \small
-    \input{tables/cross_condition_implied_gap_table.tex}
-  \end{center}
 \end{frame}
 
 
@@ -393,63 +392,63 @@
   \end{center}
 \end{frame}
 
-\begin{frame}{Appendix: WTP within attention, weight-ratio version}
-  \hypertarget{app:wtp_within_attention_ratio}{}
+\begin{frame}{Appendix: WTP within attention, multiple-choice version}
+  \hypertarget{app:wtp_within_attention_multiple_choice}{}
   \backbutton{main:wtp_within_attention}
   \vspace{0.2cm}
   \begin{columns}
     \column{0.5\textwidth}
     \centering
     Cookies\\[2pt]
-    \includegraphics[width=\textwidth]{figures/wtp_within_cookies_ratio_vs_price.png}
+    \includegraphics[width=\textwidth]{figures/wtp_within_cookies_quality_share_vs_price.png}
 
     \column{0.5\textwidth}
     \centering
     Toothpaste\\[2pt]
-    \includegraphics[width=\textwidth]{figures/wtp_within_toothpaste_ratio_vs_price.png}
+    \includegraphics[width=\textwidth]{figures/wtp_within_toothpaste_quality_share_vs_price.png}
   \end{columns}
 \end{frame}
 
-\begin{frame}{Appendix: WTA attention, weight-ratio version}
-  \hypertarget{app:wta_attention_ratio}{}
+\begin{frame}{Appendix: WTA attention, multiple-choice version}
+  \hypertarget{app:wta_attention_multiple_choice}{}
   \backbutton{main:wta_attention}
   \vspace{0.2cm}
   \begin{center}
-    \includegraphics[width=0.75\textwidth]{figures/wta_strong_cookies_ratio_vs_price.png}
+    \includegraphics[width=0.75\textwidth]{figures/wta_strong_cookies_quality_share_vs_price.png}
   \end{center}
 \end{frame}
 
-\begin{frame}{Appendix: Binary attention, weight-ratio version}
-  \hypertarget{app:binary_attention_ratio}{}
+\begin{frame}{Appendix: Binary attention, multiple-choice version}
+  \hypertarget{app:binary_attention_multiple_choice}{}
   \backbutton{main:binary_attention}
   \vspace{0.2cm}
   \begin{columns}
     \column{0.5\textwidth}
     \centering
     Cookies\\[2pt]
-    \includegraphics[width=\textwidth]{figures/binary_cookies_attention_vs_premium_share.png}
+    \includegraphics[width=\textwidth]{figures/binary_cookies_quality_share_vs_premium_share.png}
 
     \column{0.5\textwidth}
     \centering
     Toothpaste\\[2pt]
-    \includegraphics[width=\textwidth]{figures/binary_toothpaste_attention_vs_premium_share.png}
+    \includegraphics[width=\textwidth]{figures/binary_toothpaste_quality_share_vs_premium_share.png}
   \end{columns}
 \end{frame}
 
-\begin{frame}{Appendix: Cross-condition attention, weight-ratio version}
-  \hypertarget{app:cross_attention_ratio}{}
+\begin{frame}{Appendix: Cross-condition attention, multiple-choice version}
+  \hypertarget{app:cross_attention_multiple_choice}{}
   \backbutton{main:cross_attention}
   \vspace{0.2cm}
   \begin{columns}
     \column{0.5\textwidth}
     \centering
     Cookies\\[2pt]
-    \includegraphics[width=\textwidth]{figures/cross_condition_cookies_attention_vs_premium_share.png}
+    \includegraphics[width=\textwidth]{figures/cross_condition_cookies_quality_share_vs_premium_share.png}
 
     \column{0.5\textwidth}
     \centering
     Toothpaste\\[2pt]
-    \includegraphics[width=\textwidth]{figures/cross_condition_toothpaste_attention_vs_premium_share.png}
+    \includegraphics[width=\textwidth]{figures/cross_condition_toothpaste_quality_share_vs_premium_share.png}
   \end{columns}
 \end{frame}
 
