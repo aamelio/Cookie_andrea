@@ -9,6 +9,12 @@
 
 \documentclass[10pt]{beamer}   % 4:3
 
+\usepackage{booktabs}
+\providecommand{\sym}[1]{\ensuremath{^{#1}}}
+\newcommand{\se}[1]{{\scriptsize(#1)}}
+\providecommand{\normal}{\normalsize}
+\providecommand{\midskip}{\medskip}
+
 \setbeamertemplate{navigation symbols}{}
 \setbeamertemplate{footline}{%
   \leavevmode%
@@ -33,7 +39,6 @@
 \newcommand{\backbutton}[1]{\hfill\hyperlink{#1}{\beamerbutton{$\blacktriangleleft$ Back}}}
 
 \title{Price Elasticity and Context}
-\subtitle{Pilot overview: WTP, WTA, and binary choice}
 
 \date{\today}
 
@@ -46,9 +51,9 @@
 \section{Motivation}
 % ============================================================
 
-\begin{frame}{The big question}
+\begin{frame}{The big questions}
   \begin{itemize}
-    \item How stable are products' valuation and elasticity across different contexts?
+    \item How stable are products' valuation and price elasticity across different contexts?
     \item When framing changes valuation and choice, is this because consumers attend to different product attributes?
     \item Can the same framework help explain both instability across contexts and heterogeneity across consumers?
   \end{itemize}
@@ -105,10 +110,13 @@
 
 \begin{frame}{Measures}
   \begin{itemize}
-    \item For both products, we observe three attention measures:
-    \item open-text responses, which let us study how participants spontaneously describe the choice;
-    \item a multiple-choice measure that captures the main stated consideration (for example, price vs.\ quality);
-    \item attention weights, which quantify the relative weight placed on price and quality.
+    \item For both products, we elicit three attention measures:
+    \begin{enumerate}
+
+        \item open-text responses, which let us study how participants spontaneously describe the choice;
+        \item a multiple-choice measure that captures the main stated consideration (for example, price vs.\ quality);
+        \item attention weights, which quantify the relative weight placed on price and quality.
+    \end{enumerate}
     \item For toothpaste only, we also measure functionality/hedonicity.
   \end{itemize}
 \end{frame}
@@ -154,11 +162,7 @@
 
 \end{frame}
 
-% \begin{frame}{Attention is the channel}
-%   Adding attention absorbs most of the priming effect on choice (D4). ?
-%   \ph[0.36\textheight]{treatment -> attention -> choice; R\textsuperscript{2} step-up}
-%   \src{D4 Table 4 (priming coef $-0.22 \to -0.06$; R\textsuperscript{2} $0.07 \to 0.53$), Table 3.}
-% \end{frame}
+
 
 
 % ============================================================
@@ -205,6 +209,106 @@
   \end{columns}
 \end{frame}
 
+\begin{frame}{WTP within: attention and implied premium take-up}
+
+\centering
+\tiny
+\renewcommand{\arraystretch}{0.92}\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}l*{7}{c}@{}}
+\toprule
+ & \multicolumn{7}{c}{$\mathbf{1}\{\text{premium}-\text{regular} \geq \$1.30\}$} \\
+\cmidrule(lr){2-8}
+ & (1) & (2) & (3) & (4) & (5) & (6) & (7) \\
+\midrule
+$\omega^{SR}_p$              & $-0.005$\sym{***} &                    & $-0.004$\sym{***} &                    &                   & $-0.002$\sym{**}  & $-0.003$\sym{**}  \\
+                             & (0.001)           &                    & (0.001)           &                    &                   & (0.001)           & (0.001)           \\[1pt]
+\addlinespace[2pt]
+\multicolumn{8}{@{}l}{Self-reported category \quad (base: Price)} \\
+\addlinespace[1pt]
+\quad Quality                &                   & $\phantom{-}0.227$\sym{***} & $\phantom{-}0.026$ &                    &                   &                   & $-0.095$          \\
+                             &                   & (0.064)            & (0.082)            &                    &                   &                   & (0.079)           \\[1pt]
+\quad Both                   &                   & $\phantom{-}0.145$\sym{***} & $\phantom{-}0.054$ &                    &                   &                   & $-0.007$          \\
+                             &                   & (0.054)            & (0.058)            &                    &                   &                   & (0.057)           \\[1pt]
+$\omega^{LLM}_p$             &                   &                    &                   & $-0.011$\sym{***} & $-0.005$\sym{*}   & $-0.003$          & $-0.004$          \\
+                             &                   &                    &                   & (0.002)           & (0.003)           & (0.003)           & (0.003)           \\[1pt]
+\addlinespace[2pt]
+\multicolumn{8}{@{}l}{LLM labelled category \quad (base: Price Alternatives/Disutility)} \\
+\addlinespace[1pt]
+\quad Price (Reference Price)&                   &                    &                   &                    & $\phantom{-}0.187$\sym{**} & $\phantom{-}0.179$\sym{**} & $\phantom{-}0.170$\sym{**} \\
+                             &                   &                    &                   &                    & (0.086)           & (0.086)           & (0.086)           \\[1pt]
+\quad Quality                &                   &                    &                   &                    & $\phantom{-}0.196$\sym{*}  & $\phantom{-}0.190$ & $\phantom{-}0.190$ \\
+                             &                   &                    &                   &                    & (0.118)           & (0.118)           & (0.118)           \\[1pt]
+\quad Both                   &                   &                    &                   &                    & $\phantom{-}0.155$\sym{**} & $\phantom{-}0.149$\sym{**} & $\phantom{-}0.145$\sym{**} \\
+                             &                   &                    &                   &                    & (0.067)           & (0.067)           & (0.067)           \\[1pt]
+\addlinespace[2pt]
+\multicolumn{8}{@{}l}{LLM labelled valence \quad (base: Price Too High)} \\
+\addlinespace[1pt]
+\quad Quality Too Low        &                   &                    &                   &                    & $-0.203$          & $-0.224$\sym{*}   & $-0.210$          \\
+                             &                   &                    &                   &                    & (0.129)           & (0.129)           & (0.128)           \\[1pt]
+\quad Price Too Low          &                   &                    &                   &                    & $-0.002$          & $-0.012$          & $-0.005$          \\
+                             &                   &                    &                   &                    & (0.078)           & (0.077)           & (0.077)           \\[1pt]
+\quad Quality Too High       &                   &                    &                   &                    & $\phantom{-}0.124$ & $\phantom{-}0.114$ & $\phantom{-}0.123$ \\
+                             &                   &                    &                   &                    & (0.102)           & (0.101)           & (0.101)           \\[1pt]
+\midrule
+Controls (demog.\ \& thrift) & Yes & Yes & Yes & Yes & Yes & Yes & Yes \\
+Adj.\ $R^2$                  & 0.076 & 0.041 & 0.073 & 0.125 & 0.141 & 0.149 & 0.148 \\
+Observations                 & 387 & 387 & 387 & 387 & 387 & 387 & 387 \\
+\bottomrule
+\end{tabular}
+\end{frame}
+
+
+\begin{frame}{WTP within: attention and valuation gap}
+
+\centering
+\tiny
+\renewcommand{\arraystretch}{0.92}\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}l*{7}{c}@{}}
+\toprule
+ & \multicolumn{7}{c}{Premium $-$ regular WTP gap (\$)} \\
+\cmidrule(lr){2-8}
+ & (1) & (2) & (3) & (4) & (5) & (6) & (7) \\
+\midrule
+$\omega^{SR}_p$              & $-0.012$\sym{***} &                    & $-0.013$\sym{***} &                    &                   & $-0.004$          & $-0.007$\sym{**}  \\
+                             & (0.003)           &                    & (0.004)           &                    &                   & (0.003)           & (0.004)           \\[1pt]
+\addlinespace[2pt]
+\multicolumn{8}{@{}l}{Self-reported attention \quad (baseline: Price)} \\
+\addlinespace[1pt]
+\quad Quality                &                   & $\phantom{-}0.481$\sym{**} & $-0.105$          &                    &                   &                   & $-0.509$\sym{*}   \\
+                             &                   & (0.215)            & (0.269)           &                    &                   &                   & (0.278)           \\[1pt]
+\quad Both                   &                   & $\phantom{-}0.471$\sym{***} & $\phantom{-}0.207$ &                    &                   &                   & $\phantom{-}0.015$ \\
+                             &                   & (0.163)            & (0.170)           &                    &                   &                   & (0.169)           \\[1pt]
+$\omega^{LLM}_p$             &                   &                    &                   & $-0.033$\sym{***} & $-0.016$\sym{*}   & $-0.013$          & $-0.015$          \\
+                             &                   &                    &                   & (0.005)           & (0.009)           & (0.009)           & (0.009)           \\[1pt]
+\addlinespace[2pt]
+\multicolumn{8}{@{}l}{LLM labelled attention \quad (baseline: Price Alternatives/Disutility)} \\
+\addlinespace[1pt]
+\quad Price (Reference Price)&                   &                    &                   &                    & $\phantom{-}0.553$\sym{**} & $\phantom{-}0.539$\sym{*} & $\phantom{-}0.499$\sym{*} \\
+                             &                   &                    &                   &                    & (0.272)           & (0.275)           & (0.274)           \\[1pt]
+\quad Quality                &                   &                    &                   &                    & $\phantom{-}0.188$ & $\phantom{-}0.177$ & $\phantom{-}0.174$ \\
+                             &                   &                    &                   &                    & (0.366)           & (0.364)           & (0.363)           \\[1pt]
+\quad Both                   &                   &                    &                   &                    & $\phantom{-}0.264$ & $\phantom{-}0.254$ & $\phantom{-}0.226$ \\
+                             &                   &                    &                   &                    & (0.227)           & (0.226)           & (0.224)           \\[1pt]
+\addlinespace[2pt]
+\multicolumn{8}{@{}l}{LLM labelled valence \quad (baseline: Price Too High)} \\
+\addlinespace[1pt]
+\quad Quality Too Low        &                   &                    &                   &                    & $-0.585$          & $-0.624$          & $-0.538$          \\
+                             &                   &                    &                   &                    & (0.451)           & (0.450)           & (0.439)           \\[1pt]
+\quad Price Too Low          &                   &                    &                   &                    & $-0.038$          & $-0.055$          & $-0.020$          \\
+                             &                   &                    &                   &                    & (0.243)           & (0.245)           & (0.242)           \\[1pt]
+\quad Quality Too High       &                   &                    &                   &                    & $\phantom{-}0.643$\sym{**} & $\phantom{-}0.626$\sym{**} & $\phantom{-}0.678$\sym{**} \\
+                             &                   &                    &                   &                    & (0.302)           & (0.299)           & (0.294)           \\[1pt]
+\midrule
+Controls (demo\ \& thrift) & Yes & Yes & Yes & Yes & Yes & Yes & Yes \\
+Adj.\ $R^2$                  & 0.062 & 0.036 & 0.064 & 0.123 & 0.147 & 0.148 & 0.158 \\
+Observations                 & 387 & 387 & 387 & 387 & 387 & 387 & 387 \\
+\bottomrule
+\end{tabular}
+\end{frame}
+
+
+
+
 \begin{frame}{Premium demand and price elasticity by good}
   \begin{center}
     \includegraphics[width=\textwidth]{figures/wtp_within_cookies_tooth_local_elasticity.png}
@@ -235,6 +339,58 @@
 \end{frame}
 
 
+\begin{frame}{ Actual vs attention-predicted premium take-up}
+\medskip
+\begin{columns}[c,onlytextwidth]
+
+\begin{column}{0.44\textwidth}
+\centering
+\resizebox{\linewidth}{!}{%
+\renewcommand{\arraystretch}{1.12}
+\begin{tabular}{@{}l r@{}}
+\toprule
+ & Premium take-up \\
+\cmidrule(lr){2-2}
+Self-reported price weight      & $-0.002^{**}$ \; \se{0.001} \\
+\addlinespace[2pt]
+\multicolumn{2}{@{}l}{Self-reported category (base: Price)} \\
+\quad Quality                   & $\phantom{-}0.106^{*}$ \; \se{0.057} \\
+\quad Both                      & $-0.008$ \; \se{0.045} \\
+\addlinespace[2pt]
+LLM price weight                & $-0.012^{***}$ \; \se{0.002} \\
+\addlinespace[2pt]
+\multicolumn{2}{@{}l}{LLM category (base: Price, Alternatives./Disutility)} \\
+\quad Price (Reference Price)   & $\phantom{-}0.068$ \; \se{0.063} \\
+\quad Quality                   & $\phantom{-}0.055$ \; \se{0.075} \\
+\quad Both                      & $-0.036$ \; \se{0.057} \\
+\addlinespace[2pt]
+\multicolumn{2}{@{}l}{LLM valence (base: Price Too High)} \\
+\quad Quality Too Low           & $-0.141$ \; \se{0.096} \\
+\quad Price Too Low             & $-0.145^{***}$ \; \se{0.048} \\
+\quad Quality Too High          & $-0.002$ \; \se{0.069} \\
+\midrule
+Controls (demo \& thrift)   & Yes   \\
+Adjusted $R^2$                  & 0.348 \\
+$N$                             & 781   \\
+\bottomrule
+\end{tabular}}\\[3pt]
+{\tiny First stage with fine-tuned LLM. HC1 SE in parentheses.}
+\end{column}
+
+\begin{column}{0.56\textwidth}
+\centering
+\includegraphics[width=\linewidth,trim=0 0 0 22pt,clip]{figures/fig_takeup_actual_vs_predicted.pdf}
+\end{column}
+
+\end{columns}
+
+\vspace{1.4em}
+{\scriptsize
+\setlength{\abovedisplayskip}{0pt}\setlength{\belowdisplayskip}{0pt}
+OLS of individual take-up on attention $A_i$ and controls $X_i$: $Y_i = f(A_i, X_i) + \varepsilon_i$, with $A_i = (\omega_{p,i}^{\mathrm{SR}},\,\omega_{p,i}^{\mathrm{LLM}},\, R_i^{\mathrm{SR}},\, R_i^{\mathrm{LLM}},\, V_i^{\mathrm{LLM}})$. Attention-only prediction: $\widehat{Y}_i = \widehat{f}(A_i,\, \overline{X})$.
+\par}
+
+\end{frame}
 \begin{frame}{Demand curve and elasticity}
   The shift form WTP to Binary is equivalent to large cuts in the Premium Price gap.
   \begin{center}
@@ -286,11 +442,87 @@
   \end{center}
 \end{frame}
 
-\begin{frame}{Combining self-reported and LLM}
-  Self-reported says how much price matters; LLM says where it comes from. Combined, they explain most of the gap. ?
-  \ph[0.34\textheight]{observed vs predicted gap, by measure set}
-  \src{D3 Fig 5 (combined: weak 101\% / strong 54\%; SR alone 16\%).}
+
+
+
+\begin{frame}{Actual vs attention-predicted premium valuation}
+\medskip
+\begin{columns}[c,onlytextwidth]
+
+\begin{column}{0.44\textwidth}
+\centering
+\resizebox{\linewidth}{!}{%
+\renewcommand{\arraystretch}{1.12}
+\begin{tabular}{@{}l r@{}}
+\toprule
+ & Premium valuation (\$) \\
+\cmidrule(lr){2-2}
+Self-reported price weight      & $-0.015^{***}$ \; \se{0.004} \\
+\addlinespace[2pt]
+\multicolumn{2}{@{}l}{Self-reported category (base: Price)} \\
+\quad Quality                   & $-0.177$ \; \se{0.251} \\
+\quad Both                      & $\phantom{-}0.067$ \; \se{0.165} \\
+\addlinespace[2pt]
+LLM price weight                & $-0.033^{***}$ \; \se{0.009} \\
+\addlinespace[2pt]
+\multicolumn{2}{@{}l}{LLM category (base: Price, Alternatives./Disutility)} \\
+\quad Price (Reference Price)   & $\phantom{-}0.190$ \; \se{0.230} \\
+\quad Quality                   & $-0.558$ \; \se{0.353} \\
+\quad Both                      & $-0.306$ \; \se{0.194} \\
+\addlinespace[2pt]
+\multicolumn{2}{@{}l}{LLM valence (base: Price Too High)} \\
+\quad Quality Too Low           & $-1.216^{***}$ \; \se{0.430} \\
+\quad Price Too Low             & $\phantom{-}0.172$ \; \se{0.202} \\
+\quad Quality Too High          & $\phantom{-}0.549^{**}$ \; \se{0.271} \\
+\midrule
+Controls (demo \& thrift)  & Yes   \\
+Adjusted $R^2$                  & 0.195 \\
+$N$                             & 595   \\
+\bottomrule
+\end{tabular}}\\[3pt]
+{\tiny First stage with fine-tuned LLM. HC1 SE in parentheses.}
+\end{column}
+
+\begin{column}{0.56\textwidth}
+\centering
+\includegraphics[width=\linewidth,trim=0 0 0 22pt,clip]{figures/fig_valuation_actual_vs_predicted.png}
+\end{column}
+
+\end{columns}
+
+\vspace{1.4em}
+{\scriptsize
+\setlength{\abovedisplayskip}{0pt}\setlength{\belowdisplayskip}{0pt}
+OLS of individual take-up on attention $A_i$ and controls $X_i$: $Y_i = f(A_i, X_i) + \varepsilon_i$, with $A_i = (\omega_{p,i}^{\mathrm{SR}},\,\omega_{p,i}^{\mathrm{LLM}},\, R_i^{\mathrm{SR}},\, R_i^{\mathrm{LLM}},\, V_i^{\mathrm{LLM}})$. Attention-only prediction: $\widehat{Y}_i = \widehat{f}(A_i,\, \overline{X})$.
+\par}
+
 \end{frame}
+
+
+
+\begin{frame}{Combining self-reported and LLM}
+  Decomposition is where text adds value. (reference price vs opportunity cost).
+  \begin{center}
+    \includegraphics[width=0.82\linewidth]{figures/fig_wta_strong_llm_attention.png}
+  \end{center}
+\end{frame}
+
+
+\begin{frame}{Observed vs.\ attention-predicted WTA\,$-$\,WTP gap}
+ 
+\raggedright
+{
+Predict premium valuation from attention alone, take the WTA–WTP difference in means.}
+ 
+\vspace{2pt}
+\noindent\includegraphics[width=0.92\linewidth,trim=0 6pt 0 10pt,clip]{figures/fig_gap_actual_predicted_strong.png}
+ 
+\vspace{2pt}
+{It pays off to combine both text and categorical reasoning.
+\par}
+ 
+\end{frame}
+
 
 
 % ============================================================
@@ -341,9 +573,8 @@
 \appendix
 % ============================================================
 \begin{frame}{Appendix}
-  \src{OE elicitation comparison: joint vs isolated, KS, $\Delta$WTP (D4 Sec 2--3). \\
-  Within-subject order (D1 Tables 9--10). LLM prompt (D3 App B).
-  Fine-tuning LLM (next slide). Frozen vegetables (D2 App A). First stage (D3 Fig 4).}
+  \src{LLM prompt (D3 App B).
+  Fine-tuning LLM (next slide).}
 \end{frame}
 
 \begin{frame}{Appendix: Cookie brands}
@@ -489,6 +720,10 @@
     \includegraphics[width=\textwidth]{figures/cross_condition_toothpaste_quality_share_vs_premium_share.png}
   \end{columns}
 \end{frame}
+
+
+
+
 
 \begin{frame}{LLM measure: fine-tuned model}
   How the continuous LLM price weight is produced. A small model that ``reasons''
