@@ -8,13 +8,11 @@
 % ============================================================
 
 \documentclass[10pt]{beamer}   % 4:3
-
 \usepackage{booktabs}
 \providecommand{\sym}[1]{\ensuremath{^{#1}}}
 \newcommand{\se}[1]{{\scriptsize(#1)}}
 \providecommand{\normal}{\normalsize}
 \providecommand{\midskip}{\medskip}
-
 \setbeamertemplate{navigation symbols}{}
 \setbeamertemplate{footline}{%
   \leavevmode%
@@ -26,9 +24,8 @@
   }%
   \vskip2pt%
 }
+\usepackage{fancyvrb}
 \usepackage{graphicx}
-\usepackage{booktabs}
-
 \newcommand{\ph}[2][0.42\textheight]{%
   \begin{center}%
     \setlength{\fboxsep}{8pt}%
@@ -37,6 +34,19 @@
   \end{center}}
 \newcommand{\src}[1]{\par\smallskip{\footnotesize\color{gray}#1}}
 \newcommand{\backbutton}[1]{\hfill\hyperlink{#1}{\beamerbutton{$\blacktriangleleft$ Back}}}
+\usepackage[most]{tcolorbox}
+
+% ---- prompt box style ----
+\tcbset{
+  promptbox/.style={
+    enhanced, breakable, colback=gray!3, colframe=black!55,
+    boxrule=0.4pt, arc=3pt, left=12pt, right=12pt, top=10pt, bottom=10pt,
+    borderline west={2.5pt}{0pt}{black!45},
+    fonttitle=\bfseries\sffamily\small, coltitle=white, colbacktitle=black!55,
+    attach boxed title to top left={xshift=10pt, yshift=-\tcboxedtitleheight/2},
+    boxed title style={arc=2pt, boxrule=0pt},
+  }
+}
 
 \title{Price Elasticity and Context}
 
@@ -88,7 +98,7 @@
   \hypertarget{main:two_goods}{}
   \begin{itemize}
     \item We study two goods: cookies and toothpaste.
-    \item These goods are useful because they differ in their level of functionality/hedonicity (\hyperlink{app:functionality_compare}{see appendix}).
+    \item These goods are useful because they differ in their level of functionality/hedonicity (\hyperlink{app:functionality_compare}{functionality histogram}).
     \item Within each good, the key comparison is between a regular and a premium brand
       (\hyperlink{app:cookies_products}{cookies}; \hyperlink{app:toothpaste_products}{toothpaste}).
   \end{itemize}
@@ -115,7 +125,7 @@
 
         \item open-text responses, which let us study how participants spontaneously describe the reason for their choice;
         \item a multiple-choice measure that captures the main stated consideration (i.e., price, quality or both);
-        \item attention weights, which quantify the relative weight placed on price and quality.
+        \item attention weights, which quantify the relative weight placed on price and quality. \hyperlink{llm_finetune}{\beamerbutton{Fine-Tuning LLM $\blacktriangleright$}}
     \end{enumerate}
     \item For toothpaste only, we also measure functionality/hedonicity.
   \end{itemize}
@@ -469,25 +479,39 @@ OLS of individual take-up on attention $A_i$ and controls $X_i$: $Y_i = f(A_i, X
 \section{Heterogeneity}
 % ============================================================
 
-\begin{frame}{Approach}
+\begin{frame}{Heterogeneity: approach}
   \begin{itemize}
-    \item Splits along income, thrift, functionality.
-    \item Across Binary / WTP / WTA strong, not only consumption-vs-buying.
-    \item Orthogonalize: thrift within income brackets, and vice versa.
-    \item \alert{Underpowered in pilots -- exploratory.}
+    \item Examine how two outcomes of interest vary with income and thrift: i) price elasticity, measured by premium take-up/valuation; and \\ii) WTA-WTP gap.
+    \item Orthogonalize thrift within income brackets, and income within thrift brackets.
   \end{itemize}
 \end{frame}
 
-
 \begin{frame}{WTA-WTP gap: income}
+
+WTA–WTP gap concentrates among lower-income respondents, driven by lower WTP.
+
   \begin{center}
     \includegraphics[width=0.55\textwidth]{figures/fig_result_gap_income.pdf}\hfill
     \includegraphics[width=0.45\textwidth]{figures/fig_gap_decomp.png}
   \end{center}
+
 \end{frame}
+
+\begin{frame}{WTA-WTP gap: thrift}
+
+WTA–WTP gap concentrates among mid-thrift respondents.
+
+  \begin{center}
+    \includegraphics[width=0.55\textwidth]{figures/fig_result_gap_thrift.png}\hfill
+    \includegraphics[width=0.45\textwidth]{figures/fig_gap_decomp_thrift.png}
+  \end{center}
+
+\end{frame}
+
  
 % ---- Frame 2: thrift is a separate axis (Loewenstein) ----
 \begin{frame}{Price elasticity: thrift (WTP within)}
+People who think more carefully about money differentiate the premium more, but weight price no differently.
   \begin{center}
     \includegraphics[width=0.49\textwidth]{figures/fig_het_wtp_thrift_continuous.pdf}\hfill
     \includegraphics[width=0.49\textwidth]{figures/fig_het_wtp_thrift_attention.pdf}
@@ -496,6 +520,9 @@ OLS of individual take-up on attention $A_i$ and controls $X_i$: $Y_i = f(A_i, X
  
 % ---- Frame 3: orthogonalized income x thrift ----
 \begin{frame}{\large Price elasticity: orthogonalized income $\times$ thrift (WTP within)}
+
+Put income and thrift in same regression, and see which one predicts each outcome.
+
   \vspace{0.4em}
   \begin{center}
   \small
@@ -516,13 +543,62 @@ OLS of individual take-up on attention $A_i$ and controls $X_i$: $Y_i = f(A_i, X
   \end{center}
   \vspace{0.2em}
   {\footnotesize $\mathrm{corr}(\text{income},\text{thrift})=0.04$, uncorrelated.}
+
+
+\end{frame}
+
+
+
+\begin{frame}{\large Price elasticity: orthogonalized income $\times$ thrift (WTP within)}
+
+Split thrift within each income half, and income within each thrift half.
+
+\vspace{0.8em}
+ 
+\begin{center}
+\small
+ 
+Premium take-up
+\smallskip
+ 
+\begin{tabular}{@{}lcc@{}}
+\toprule
+             & Thrift low & Thrift high \\
+\midrule
+Income low   & $0.28$ & $0.42$ \\
+Income high  & $0.37$ & $0.41$ \\
+\bottomrule
+\end{tabular}
+ 
+\bigskip
+Premium valuation (\$)
+\smallskip
+ 
+\begin{tabular}{@{}lcc@{}}
+\toprule
+             & Thrift low & Thrift high \\
+\midrule
+Income low   & $3.87$ & $3.93$ \\
+Income high  & $4.53$ & $4.40$ \\
+\bottomrule
+\end{tabular}
+
+\end{center}
+
+Income drives absolute valuation, thrift drives relative price sensitivity.
+
 \end{frame}
  
 % ---- Frame 4: consumption frame subgroups ----
 \begin{frame}{Price elasticity (Binary, Consumption to Buying)}
+
+Consumption frame acts mostly on high-income and middle-thrift respondents. (Suggestive: within-subgroup effects)
+
   \begin{center}
     \includegraphics[width=0.86\textwidth]{figures/fig_consumption_binary.pdf}
   \end{center}
+
+
 \end{frame}
 
 
@@ -749,19 +825,14 @@ Predict premium valuation from attention alone, take the WTA--WTP difference in 
 \end{frame}
 
 
-
-
-
-\begin{frame}{LLM price weight measure: fine-tuned model}
+\begin{frame}[label=llm_finetune]{LLM price weight measure: fine-tuned model}
   A small model (GPT-4.1-mini) taught on reasoning texts, fixing:
   \begin{itemize}
     \item[$\bullet$] 75 is nearly 80, not fully wrong, the model needs to know some answers are closer than others.
-    \item[$\bullet$] 
+    \item[$\bullet$]
       benefits from being shown how a stronger model reads the text (explicitly elicited LLM reasoning)
   \end{itemize}
-
 \medskip
-
   \begin{enumerate}
     \item Group answers into 10 buckets (weight 65 falls in bucket 6),
       so nearby answers are treated as close.
@@ -769,8 +840,180 @@ Predict premium valuation from attention alone, take the WTA--WTP difference in 
       a short read of the text written by a smarter model (GPT-5).
     \item Teach it. Train on 3500 examples of ``text $\to$ read (from superior LLM)
       $+$ bucket (from human)''.
-    \item Turn guess back into a number (final price weight from LLM). From model's distribution over buckets, take  expected price weight.
+    \item Turn guess back into a number (final price weight from LLM). From model's distribution over buckets, take expected price weight.
   \end{enumerate}
-
+  \backbutton{results_llm}
 \end{frame}
+
+
+
+\begin{frame}{LLM price weight measure: fine-tuned model performance}
+  \begin{columns}[c]
+    \column{0.55\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{figures/fig1_v5_llm_sr_fit.pdf}
+    \column{0.45\textwidth}
+      \small
+      \setlength{\tabcolsep}{4pt}
+      \begin{tabular}{@{}lcc@{}}
+        \toprule
+        Metric & Prompted & Fine-tuned \\
+        \midrule
+        $N$                 & 4257  & 689 \\
+        MAE                 & 33.35 & 18.11 \\
+        RMSE                & 41.05 & 22.91 \\
+        Pearson $r$         & $0.375^{***}$ & $0.520^{***}$ \\
+        $R^2$ ($r^2$)       & 0.141 & 0.270 \\
+        \bottomrule
+      \end{tabular}
+  \end{columns}
+\end{frame}
+
+% ============================================================
+% LLM classification prompt -- plainest beamer, no box, no special packages.
+% ============================================================
+
+\begin{frame}{LLM classification prompt}
+\small
+You are an expert in text classification. Below is a respondent's reasoning for their choice.
+
+Respondent ID: \texttt{\{response\_id\}}. Response text: \texttt{\{text\}}.
+
+Assign the reasoning THREE outputs:
+\begin{itemize}
+\item a focus label (Price / Quality / Both);
+\item a continuous weight on a 0--100 spectrum (0 = Quality, 100 = Price), measuring the quality--price trade-off;
+\item a quality valence (``high'' / ``low'' / null) and a price valence (``high'' / ``low'' / null).
+\end{itemize}
+\end{frame}
+
+\begin{frame}{LLM classification prompt}
+\small
+\textbf{Note:}
+\begin{itemize}
+\item Follow the classification rules carefully. Your judgment should make an effort to understand the respondent's reasoning.
+\item Base your decision only on what the respondent actually wrote, and do not infer beyond it.
+\item Price-focused answers are divided into ``Price (Alternatives or Disutility)'' and ``Price (Reference Price)''. The former means people mention using the money to buy other things or emphasize the pain of paying. Price-related responses without these two aspects, but still primarily about price, are labeled ``Price (Reference Price)''.
+\item Classify as ``No cookie'' if and only if the text explicitly states ``No cookie.'' Otherwise it must be ``Price (Alternatives or Disutility)'', ``Price (Reference Price)'', ``Quality'', or ``Both''.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{LLM classification prompt}
+\small
+\textbf{Note (continued):}
+\begin{itemize}
+\item Continuous price weight from 0 to 100, using the same criteria as the focus label. 0 = purely quality-driven (a perfect match with the Quality criteria); 100 = purely price-driven (a perfect match with either Price criteria). Many responses are a mixture; infer the weight and assign a value between 0 and 100 based on how closely the logic aligns with each side.
+\item Avoid defaulting to 50 when the response is short or ambiguous. Commit to the side the wording leans toward, even if weakly.
+\item Valence rules: (i) if focus = ``Quality'', fill \texttt{quality\_valence\_gpt}, set \texttt{price\_valence\_gpt} to null. (ii) if focus = ``Price (Alternatives or Disutility)'' or ``Price (Reference Price)'', fill \texttt{price\_valence\_gpt}, set \texttt{quality\_valence\_gpt} to null. (iii) if ``Both'', fill both. (iv) if ``No cookie'', both null.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{LLM classification prompt}
+\small
+Output a single valid JSON object with no additional text:
+\vspace{4pt}
+
+{\ttfamily\scriptsize
+\{\{ \\
+\hspace*{1em}"ResponseId": "\{response\_id\}", \\
+\hspace*{1em}"rel\_reasons\_gpt": "Price (Alternatives or Disutility)" \\
+\hspace*{2.6em}or "Price (Reference Price)" or "Quality" \\
+\hspace*{2.6em}or "Both" or "No cookie", \\
+\hspace*{1em}"price\_weight\_gpt": \textless int 0--100, null if "No cookie"\textgreater, \\
+\hspace*{1em}"quality\_valence\_gpt": "high" or "low" or null, \\
+\hspace*{1em}"price\_valence\_gpt": "high" or "low" or null \\
+\}\}
+\par}
+\end{frame}
+
+\begin{frame}{LLM classification prompt}
+\small
+\textbf{A. Price (Alternatives or Disutility).}
+\emph{Rule:} label here if the reasoning mentions (i) using the money for something else / buying other items (opportunity cost) / switching options, or (ii) the pain of paying, not wanting to spend, or aversion to spending.
+
+\emph{Keywords, alternatives:} ``I could buy X instead'', ``spend the money on\ldots'', ``make it at home for cheaper''.
+\emph{Keywords, disutility:} ``don't want to spend more than\ldots'', ``wouldn't pay that much'', ``not worth spending'', ``just a treat so I won't spend much'', ``overpriced''.
+
+\textbf{Examples:}
+\begin{itemize}
+\item ``I thought about other potential options I could purchase.''
+\item ``I could pay the same \$6 for something I like better.''
+\item ``If I'm not happy with the price, I'll shop elsewhere or purchase a store brand instead.''
+\item ``I don't want to shell out much more than a dollar\ldots''
+\item ``I don't need them and wouldn't pay regular price.''
+\end{itemize}
+\end{frame}
+
+\begin{frame}{LLM classification prompt}
+\small
+\textbf{B. Price (Reference Price).}
+\emph{Rule:} label here if the reasoning mainly mentions reference price, usual cost, a reasonable price, a price guessed from store norms, quantity, or unit-price math (``only 12 cookies'', ``price per cookie'', ``small package so lower price''), and does \emph{not} mention (i) buying something else instead or (ii) the pain of paying / not wanting to spend.
+
+\textbf{Examples:}
+\begin{itemize}
+\item ``I tried to remember how much a package \ldots usually costs.''
+\item ``I don't buy cookies so I don't know the price. I just guessed \ldots''
+\item ``I was thinking that it is only 12 cookies\ldots''
+\item ``33 cents a cookie seems fair.''
+\item ``I thought about how much I think these cookies cost in the store.''
+\end{itemize}
+\end{frame}
+
+\begin{frame}{LLM classification prompt}
+\small
+\textbf{C. Quality.}
+\emph{Rule:} classify as ``Quality'' if the reasoning mainly centers on taste, ingredients, freshness, whether the product is handmade, how good it is, how premium it feels, or how healthy it is.
+
+\emph{Keywords:} taste / delicious / flavorful; quality / high / low; ingredients / organic / processed; homemade / fresh / artisanal; brand reputation; texture (soft / dry / crumbly); health / unhealthy; packaging as a quality signal; novelty / experience.
+
+\textbf{Examples:}
+\begin{itemize}
+\item ``I would consider the taste and quality. Tate's cookies are known for being crisp and flavorful.''
+\item ``These cookies are delicious and I would pay a premium price for them.''
+\item ``They look home made and soft and creamy.''
+\item ``I do not like these cookies. They are hard and the chocolate tastes bitter.''
+\item ``Tate's is a premium brand and usually costs more because of the quality and packaging.''
+\item ``I love Tate's cookies. They are so good!''
+\end{itemize}
+\end{frame}
+
+\begin{frame}{LLM classification prompt}
+\small
+\textbf{D. Both.}
+\emph{Rule:} assign ``Both'' only when a price consideration and a quality consideration are genuinely weighed against each other. A quality word that merely endorses the price (``good cookies at a fair price'') is not weighing.
+
+\emph{Signals:} explicit trade-off language (``balance'', ``weighed X against cost'', ``quality vs price''); quality pulls the price up while price or budget pulls it back, neither dominant (``good quality, but I won't pay more than \$5'').
+
+\textbf{Examples:}
+\begin{itemize}
+\item ``Five dollars feels like it's expensive enough that the quality is good, but not too expensive where it feels overpriced.''
+\item ``Tate's cookies are good though and better quality, so if they were under \$5 I may buy them.''
+\item ``My decision was based on the balance between expected enjoyment, brand familiarity, and whether the price felt reasonable for that level of quality.''
+\item ``It's a quality brand, but you are getting few cookies for your money\ldots \$5 is a lot to pay for maybe 10 cookies.''
+\end{itemize}
+\end{frame}
+
+\begin{frame}{LLM classification prompt}
+\small
+\textbf{E. Valence levels.}
+Do NOT use the respondent's final price or any reference to the \$5 anchor as a signal.
+
+\textbf{Quality valence} (if focus = Quality or Both):
+\begin{itemize}
+\item ``high'': product described as good, delicious, premium, fresh, well-made, or appealing.
+\item ``low'': product described as poor, bland, processed, unhealthy, or unappealing.
+\end{itemize}
+\emph{High:} ``These cookies are delicious.''; ``Tate's is a premium brand.''; ``Soft and creamy.'' \quad \emph{Low:} ``Hard and bitter.''; ``Heavily processed.''
+
+\vspace{4pt}
+\textbf{Price valence} (if focus = Price (Alt.\ or Disutility), Price (Reference), or Both):
+\begin{itemize}
+\item ``high'': price described as expensive or steep, in general terms.
+\item ``low'': price described as cheap, affordable, or fair, in general terms.
+\end{itemize}
+\emph{High:} ``Cookies like these are pricey.''; ``Overpriced in general.''; ``Premium products cost a lot.'' \quad \emph{Low:} ``Cookies are usually cheap.''; ``Affordable snack.''; ``Reasonably priced.''
+\end{frame}
+
+
+
 \end{document}
