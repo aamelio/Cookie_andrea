@@ -869,50 +869,34 @@ Predict premium valuation from attention alone, take the WTA--WTP difference in 
   \end{columns}
 \end{frame}
 
-% ============================================================
+
 % LLM classification prompt -- plainest beamer, no box, no special packages.
+
+
+% ============================================================
+% LLM classification prompt -- plain beamer with paragraph spacing.
+% No box, no special packages.
 % ============================================================
 
 \begin{frame}{LLM classification prompt}
 \small
 You are an expert in text classification. Below is a respondent's reasoning for their choice.
 
+\medskip
 Respondent ID: \texttt{\{response\_id\}}. Response text: \texttt{\{text\}}.
-
+\medskip
 Assign the reasoning THREE outputs:
 \begin{itemize}
 \item a focus label (Price / Quality / Both);
 \item a continuous weight on a 0--100 spectrum (0 = Quality, 100 = Price), measuring the quality--price trade-off;
 \item a quality valence (``high'' / ``low'' / null) and a price valence (``high'' / ``low'' / null).
 \end{itemize}
-\end{frame}
 
-\begin{frame}{LLM classification prompt}
-\small
-\textbf{Note:}
-\begin{itemize}
-\item Follow the classification rules carefully. Your judgment should make an effort to understand the respondent's reasoning.
-\item Base your decision only on what the respondent actually wrote, and do not infer beyond it.
-\item Price-focused answers are divided into ``Price (Alternatives or Disutility)'' and ``Price (Reference Price)''. The former means people mention using the money to buy other things or emphasize the pain of paying. Price-related responses without these two aspects, but still primarily about price, are labeled ``Price (Reference Price)''.
-\item Classify as ``No cookie'' if and only if the text explicitly states ``No cookie.'' Otherwise it must be ``Price (Alternatives or Disutility)'', ``Price (Reference Price)'', ``Quality'', or ``Both''.
-\end{itemize}
-\end{frame}
-
-\begin{frame}{LLM classification prompt}
-\small
-\textbf{Note (continued):}
-\begin{itemize}
-\item Continuous price weight from 0 to 100, using the same criteria as the focus label. 0 = purely quality-driven (a perfect match with the Quality criteria); 100 = purely price-driven (a perfect match with either Price criteria). Many responses are a mixture; infer the weight and assign a value between 0 and 100 based on how closely the logic aligns with each side.
-\item Avoid defaulting to 50 when the response is short or ambiguous. Commit to the side the wording leans toward, even if weakly.
-\item Valence rules: (i) if focus = ``Quality'', fill \texttt{quality\_valence\_gpt}, set \texttt{price\_valence\_gpt} to null. (ii) if focus = ``Price (Alternatives or Disutility)'' or ``Price (Reference Price)'', fill \texttt{price\_valence\_gpt}, set \texttt{quality\_valence\_gpt} to null. (iii) if ``Both'', fill both. (iv) if ``No cookie'', both null.
-\end{itemize}
-\end{frame}
-
-\begin{frame}{LLM classification prompt}
+\medskip
 \small
 Output a single valid JSON object with no additional text:
-\vspace{4pt}
 
+\vspace{4pt}
 {\ttfamily\scriptsize
 \{\{ \\
 \hspace*{1em}"ResponseId": "\{response\_id\}", \\
@@ -924,16 +908,46 @@ Output a single valid JSON object with no additional text:
 \hspace*{1em}"price\_valence\_gpt": "high" or "low" or null \\
 \}\}
 \par}
+
+\end{frame}
+
+\begin{frame}{LLM classification prompt}
+\small
+\textbf{Note:}
+
+\begin{itemize}
+\item Follow the classification rules carefully. Your judgment should make an effort to understand the respondent's reasoning.
+\item Base your decision only on what the respondent actually wrote, and do not infer beyond it.
+\item Price-focused answers are divided into ``Price (Alternatives or Disutility)'' and ``Price (Reference Price)''. The former means people mention using the money to buy other things or emphasize the pain of paying. Price-related responses without these two aspects, but still primarily about price, are labeled ``Price (Reference Price)''.
+\item Classify as ``No cookie'' if and only if the text explicitly states ``No cookie.'' Otherwise it must be ``Price (Alternatives or Disutility)'', ``Price (Reference Price)'', ``Quality'', or ``Both''.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{LLM classification prompt}
+\small
+\textbf{Note (continued):}
+
+\begin{itemize}
+\item Continuous price weight from 0 to 100, using the same criteria as the focus label. 0 = purely quality-driven (a perfect match with the Quality criteria); 100 = purely price-driven (a perfect match with either Price criteria). Many responses are a mixture; infer the weight and assign a value between 0 and 100 based on how closely the logic aligns with each side.
+\item Avoid defaulting to 50 when the response is short or ambiguous. Commit to the side the wording leans toward, even if weakly.
+\item Valence rules: (i) if focus = ``Quality'', fill \texttt{quality\_valence\_gpt}, set \texttt{price\_valence\_gpt} to null. (ii) if focus = ``Price (Alternatives or Disutility)'' or ``Price (Reference Price)'', fill \texttt{price\_valence\_gpt}, set \texttt{quality\_valence\_gpt} to null. (iii) if ``Both'', fill both. (iv) if ``No cookie'', both null.
+\end{itemize}
 \end{frame}
 
 \begin{frame}{LLM classification prompt}
 \small
 \textbf{A. Price (Alternatives or Disutility).}
+
+\medskip
 \emph{Rule:} label here if the reasoning mentions (i) using the money for something else / buying other items (opportunity cost) / switching options, or (ii) the pain of paying, not wanting to spend, or aversion to spending.
 
+\medskip
 \emph{Keywords, alternatives:} ``I could buy X instead'', ``spend the money on\ldots'', ``make it at home for cheaper''.
+
+\medskip
 \emph{Keywords, disutility:} ``don't want to spend more than\ldots'', ``wouldn't pay that much'', ``not worth spending'', ``just a treat so I won't spend much'', ``overpriced''.
 
+\medskip
 \textbf{Examples:}
 \begin{itemize}
 \item ``I thought about other potential options I could purchase.''
@@ -947,7 +961,9 @@ Output a single valid JSON object with no additional text:
 \begin{frame}{LLM classification prompt}
 \small
 \textbf{B. Price (Reference Price).}
+
 \emph{Rule:} label here if the reasoning mainly mentions reference price, usual cost, a reasonable price, a price guessed from store norms, quantity, or unit-price math (``only 12 cookies'', ``price per cookie'', ``small package so lower price''), and does \emph{not} mention (i) buying something else instead or (ii) the pain of paying / not wanting to spend.
+\medskip
 
 \textbf{Examples:}
 \begin{itemize}
@@ -962,9 +978,13 @@ Output a single valid JSON object with no additional text:
 \begin{frame}{LLM classification prompt}
 \small
 \textbf{C. Quality.}
+\medskip
 \emph{Rule:} classify as ``Quality'' if the reasoning mainly centers on taste, ingredients, freshness, whether the product is handmade, how good it is, how premium it feels, or how healthy it is.
+\medskip
+
 
 \emph{Keywords:} taste / delicious / flavorful; quality / high / low; ingredients / organic / processed; homemade / fresh / artisanal; brand reputation; texture (soft / dry / crumbly); health / unhealthy; packaging as a quality signal; novelty / experience.
+\medskip
 
 \textbf{Examples:}
 \begin{itemize}
@@ -976,13 +996,18 @@ Output a single valid JSON object with no additional text:
 \item ``I love Tate's cookies. They are so good!''
 \end{itemize}
 \end{frame}
+\medskip
 
 \begin{frame}{LLM classification prompt}
 \small
 \textbf{D. Both.}
+
 \emph{Rule:} assign ``Both'' only when a price consideration and a quality consideration are genuinely weighed against each other. A quality word that merely endorses the price (``good cookies at a fair price'') is not weighing.
+\medskip
+
 
 \emph{Signals:} explicit trade-off language (``balance'', ``weighed X against cost'', ``quality vs price''); quality pulls the price up while price or budget pulls it back, neither dominant (``good quality, but I won't pay more than \$5'').
+\medskip
 
 \textbf{Examples:}
 \begin{itemize}
@@ -997,21 +1022,32 @@ Output a single valid JSON object with no additional text:
 \small
 \textbf{E. Valence levels.}
 Do NOT use the respondent's final price or any reference to the \$5 anchor as a signal.
+\medskip
 
 \textbf{Quality valence} (if focus = Quality or Both):
 \begin{itemize}
 \item ``high'': product described as good, delicious, premium, fresh, well-made, or appealing.
 \item ``low'': product described as poor, bland, processed, unhealthy, or unappealing.
 \end{itemize}
-\emph{High:} ``These cookies are delicious.''; ``Tate's is a premium brand.''; ``Soft and creamy.'' \quad \emph{Low:} ``Hard and bitter.''; ``Heavily processed.''
+\medskip
+\vspace{-1em}
 
-\vspace{4pt}
+\emph{High:} ``These cookies are delicious.''; ``Tate's is a premium brand.''; ``Soft and creamy.'' 
+\medskip
+
+\emph{Low:} ``Hard and bitter.''; ``Heavily processed.''
+
+\vspace{6pt}
 \textbf{Price valence} (if focus = Price (Alt.\ or Disutility), Price (Reference), or Both):
+\vspace{-1em}
 \begin{itemize}
 \item ``high'': price described as expensive or steep, in general terms.
 \item ``low'': price described as cheap, affordable, or fair, in general terms.
 \end{itemize}
-\emph{High:} ``Cookies like these are pricey.''; ``Overpriced in general.''; ``Premium products cost a lot.'' \quad \emph{Low:} ``Cookies are usually cheap.''; ``Affordable snack.''; ``Reasonably priced.''
+\emph{High:} ``Cookies like these are pricey.''; ``Overpriced in general.''; ``Premium products cost a lot.'' 
+
+\medskip
+\emph{Low:} ``Cookies are usually cheap.''; ``Affordable snack.''; ``Reasonably priced.''
 \end{frame}
 
 
