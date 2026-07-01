@@ -209,56 +209,10 @@
   \end{columns}
 \end{frame}
 
-\begin{frame}{WTP within: attention and implied premium take-up}
-
-\centering
-\tiny
-\renewcommand{\arraystretch}{0.92}\setlength{\tabcolsep}{3pt}
-\begin{tabular}{@{}l*{7}{c}@{}}
-\toprule
- & \multicolumn{7}{c}{$\mathbf{1}\{\text{premium}-\text{regular} \geq \$1.30\}$} \\
-\cmidrule(lr){2-8}
- & (1) & (2) & (3) & (4) & (5) & (6) & (7) \\
-\midrule
-$\omega^{SR}_p$              & $-0.005$\sym{***} &                    & $-0.004$\sym{***} &                    &                   & $-0.002$\sym{**}  & $-0.003$\sym{**}  \\
-                             & (0.001)           &                    & (0.001)           &                    &                   & (0.001)           & (0.001)           \\[1pt]
-\addlinespace[2pt]
-\multicolumn{8}{@{}l}{Self-reported category \quad (base: Price)} \\
-\addlinespace[1pt]
-\quad Quality                &                   & $\phantom{-}0.227$\sym{***} & $\phantom{-}0.026$ &                    &                   &                   & $-0.095$          \\
-                             &                   & (0.064)            & (0.082)            &                    &                   &                   & (0.079)           \\[1pt]
-\quad Both                   &                   & $\phantom{-}0.145$\sym{***} & $\phantom{-}0.054$ &                    &                   &                   & $-0.007$          \\
-                             &                   & (0.054)            & (0.058)            &                    &                   &                   & (0.057)           \\[1pt]
-$\omega^{LLM}_p$             &                   &                    &                   & $-0.011$\sym{***} & $-0.005$\sym{*}   & $-0.003$          & $-0.004$          \\
-                             &                   &                    &                   & (0.002)           & (0.003)           & (0.003)           & (0.003)           \\[1pt]
-\addlinespace[2pt]
-\multicolumn{8}{@{}l}{LLM labelled category \quad (base: Price Alternatives/Disutility)} \\
-\addlinespace[1pt]
-\quad Price (Reference Price)&                   &                    &                   &                    & $\phantom{-}0.187$\sym{**} & $\phantom{-}0.179$\sym{**} & $\phantom{-}0.170$\sym{**} \\
-                             &                   &                    &                   &                    & (0.086)           & (0.086)           & (0.086)           \\[1pt]
-\quad Quality                &                   &                    &                   &                    & $\phantom{-}0.196$\sym{*}  & $\phantom{-}0.190$ & $\phantom{-}0.190$ \\
-                             &                   &                    &                   &                    & (0.118)           & (0.118)           & (0.118)           \\[1pt]
-\quad Both                   &                   &                    &                   &                    & $\phantom{-}0.155$\sym{**} & $\phantom{-}0.149$\sym{**} & $\phantom{-}0.145$\sym{**} \\
-                             &                   &                    &                   &                    & (0.067)           & (0.067)           & (0.067)           \\[1pt]
-\addlinespace[2pt]
-\multicolumn{8}{@{}l}{LLM labelled valence \quad (base: Price Too High)} \\
-\addlinespace[1pt]
-\quad Quality Too Low        &                   &                    &                   &                    & $-0.203$          & $-0.224$\sym{*}   & $-0.210$          \\
-                             &                   &                    &                   &                    & (0.129)           & (0.129)           & (0.128)           \\[1pt]
-\quad Price Too Low          &                   &                    &                   &                    & $-0.002$          & $-0.012$          & $-0.005$          \\
-                             &                   &                    &                   &                    & (0.078)           & (0.077)           & (0.077)           \\[1pt]
-\quad Quality Too High       &                   &                    &                   &                    & $\phantom{-}0.124$ & $\phantom{-}0.114$ & $\phantom{-}0.123$ \\
-                             &                   &                    &                   &                    & (0.102)           & (0.101)           & (0.101)           \\[1pt]
-\midrule
-Controls (demog.\ \& thrift) & Yes & Yes & Yes & Yes & Yes & Yes & Yes \\
-Adj.\ $R^2$                  & 0.076 & 0.041 & 0.073 & 0.125 & 0.141 & 0.149 & 0.148 \\
-Observations                 & 387 & 387 & 387 & 387 & 387 & 387 & 387 \\
-\bottomrule
-\end{tabular}
-\end{frame}
-
-
 \begin{frame}{WTP within: attention and valuation gap}
+  \hypertarget{main:wtp_gap_reg}{}
+  \hfill\hyperlink{app:wtp_takeup_reg}{\beamerbutton{Related take-up table}}
+  \medskip
 
 \centering
 \tiny
@@ -501,28 +455,14 @@ OLS of individual take-up on attention $A_i$ and controls $X_i$: $Y_i = f(A_i, X
 
 
 \begin{frame}{Combining self-reported and LLM}
+  \hypertarget{main:wta_combined}{}
+  \hfill\hyperlink{app:wta_gap_predicted}{\beamerbutton{Predicted gap slide}}
+  \medskip
   Decomposition is where text adds value. (reference price vs opportunity cost).
   \begin{center}
     \includegraphics[width=0.82\linewidth]{figures/fig_wta_strong_llm_attention.png}
   \end{center}
 \end{frame}
-
-
-\begin{frame}{Observed vs.\ attention-predicted WTA\,$-$\,WTP gap}
- 
-\raggedright
-{
-Predict premium valuation from attention alone, take the WTA–WTP difference in means.}
- 
-\vspace{2pt}
-\noindent\includegraphics[width=0.92\linewidth,trim=0 6pt 0 10pt,clip]{figures/fig_gap_actual_predicted_strong.png}
- 
-\vspace{2pt}
-{It pays off to combine both text and categorical reasoning.
-\par}
- 
-\end{frame}
-
 
 
 % ============================================================
@@ -704,6 +644,56 @@ Predict premium valuation from attention alone, take the WTA–WTP difference in
   \end{columns}
 \end{frame}
 
+\begin{frame}{Appendix: WTP within attention and implied premium take-up}
+  \hypertarget{app:wtp_takeup_reg}{}
+  \backbutton{main:wtp_gap_reg}
+
+\centering
+\tiny
+\renewcommand{\arraystretch}{0.92}\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}l*{7}{c}@{}}
+\toprule
+ & \multicolumn{7}{c}{$\mathbf{1}\{\text{premium}-\text{regular} \geq \$1.30\}$} \\
+\cmidrule(lr){2-8}
+ & (1) & (2) & (3) & (4) & (5) & (6) & (7) \\
+\midrule
+$\omega^{SR}_p$              & $-0.005$\sym{***} &                    & $-0.004$\sym{***} &                    &                   & $-0.002$\sym{**}  & $-0.003$\sym{**}  \\
+                             & (0.001)           &                    & (0.001)           &                    &                   & (0.001)           & (0.001)           \\[1pt]
+\addlinespace[2pt]
+\multicolumn{8}{@{}l}{Self-reported category \quad (base: Price)} \\
+\addlinespace[1pt]
+\quad Quality                &                   & $\phantom{-}0.227$\sym{***} & $\phantom{-}0.026$ &                    &                   &                   & $-0.095$          \\
+                             &                   & (0.064)            & (0.082)            &                    &                   &                   & (0.079)           \\[1pt]
+\quad Both                   &                   & $\phantom{-}0.145$\sym{***} & $\phantom{-}0.054$ &                    &                   &                   & $-0.007$          \\
+                             &                   & (0.054)            & (0.058)            &                    &                   &                   & (0.057)           \\[1pt]
+$\omega^{LLM}_p$             &                   &                    &                   & $-0.011$\sym{***} & $-0.005$\sym{*}   & $-0.003$          & $-0.004$          \\
+                             &                   &                    &                   & (0.002)           & (0.003)           & (0.003)           & (0.003)           \\[1pt]
+\addlinespace[2pt]
+\multicolumn{8}{@{}l}{LLM labelled category \quad (base: Price Alternatives/Disutility)} \\
+\addlinespace[1pt]
+\quad Price (Reference Price)&                   &                    &                   &                    & $\phantom{-}0.187$\sym{**} & $\phantom{-}0.179$\sym{**} & $\phantom{-}0.170$\sym{**} \\
+                             &                   &                    &                   &                    & (0.086)           & (0.086)           & (0.086)           \\[1pt]
+\quad Quality                &                   &                    &                   &                    & $\phantom{-}0.196$\sym{*}  & $\phantom{-}0.190$ & $\phantom{-}0.190$ \\
+                             &                   &                    &                   &                    & (0.118)           & (0.118)           & (0.118)           \\[1pt]
+\quad Both                   &                   &                    &                   &                    & $\phantom{-}0.155$\sym{**} & $\phantom{-}0.149$\sym{**} & $\phantom{-}0.145$\sym{**} \\
+                             &                   &                    &                   &                    & (0.067)           & (0.067)           & (0.067)           \\[1pt]
+\addlinespace[2pt]
+\multicolumn{8}{@{}l}{LLM labelled valence \quad (base: Price Too High)} \\
+\addlinespace[1pt]
+\quad Quality Too Low        &                   &                    &                   &                    & $-0.203$          & $-0.224$\sym{*}   & $-0.210$          \\
+                             &                   &                    &                   &                    & (0.129)           & (0.129)           & (0.128)           \\[1pt]
+\quad Price Too Low          &                   &                    &                   &                    & $-0.002$          & $-0.012$          & $-0.005$          \\
+                             &                   &                    &                   &                    & (0.078)           & (0.077)           & (0.077)           \\[1pt]
+\quad Quality Too High       &                   &                    &                   &                    & $\phantom{-}0.124$ & $\phantom{-}0.114$ & $\phantom{-}0.123$ \\
+                             &                   &                    &                   &                    & (0.102)           & (0.101)           & (0.101)           \\[1pt]
+\midrule
+Controls (demog.\ \& thrift) & Yes & Yes & Yes & Yes & Yes & Yes & Yes \\
+Adj.\ $R^2$                  & 0.076 & 0.041 & 0.073 & 0.125 & 0.141 & 0.149 & 0.148 \\
+Observations                 & 387 & 387 & 387 & 387 & 387 & 387 & 387 \\
+\bottomrule
+\end{tabular}
+\end{frame}
+
 \begin{frame}{Appendix: WTA attention, multiple-choice version}
   \hypertarget{app:wta_attention_multiple_choice}{}
   \backbutton{main:wta_attention}
@@ -711,6 +701,23 @@ Predict premium valuation from attention alone, take the WTA–WTP difference in
   \begin{center}
     \includegraphics[width=0.75\textwidth]{figures/wta_strong_cookies_quality_share_vs_price.png}
   \end{center}
+\end{frame}
+
+\begin{frame}{Appendix: Observed vs.\ attention-predicted WTA\,$-$\,WTP gap}
+  \hypertarget{app:wta_gap_predicted}{}
+  \backbutton{main:wta_combined}
+ 
+\raggedright
+{
+Predict premium valuation from attention alone, take the WTA--WTP difference in means.}
+ 
+\vspace{2pt}
+\noindent\includegraphics[width=0.92\linewidth,trim=0 6pt 0 10pt,clip]{figures/fig_gap_actual_predicted_strong.png}
+ 
+\vspace{2pt}
+{It pays off to combine both text and categorical reasoning.
+\par}
+ 
 \end{frame}
 
 \begin{frame}{Appendix: Binary attention, multiple-choice version}
