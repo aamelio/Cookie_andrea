@@ -538,24 +538,54 @@ Predict premium valuation from attention alone, take the WTA–WTP difference in
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Income and thrift splits}
-  Effects concentrate in some groups; income and thrift differ. ?
-  \ph{\{income, thrift\} $\times$ \{Binary / WTP / WTA\} ?}
-  \src{D3 Fig 8 (Binary), Fig 10 (WTA gap, low-inc 0.71 vs high $-0.18$).
-  Redo on key treatments + WTP levels + toothpaste -- all D3. ?}
+
+\begin{frame}{WTA-WTP gap: income}
+  \begin{center}
+    \includegraphics[width=0.55\textwidth]{figures/fig_result_gap_income.pdf}\hfill
+    \includegraphics[width=0.45\textwidth]{figures/fig_gap_decomp.png}
+  \end{center}
+\end{frame}
+ 
+% ---- Frame 2: thrift is a separate axis (Loewenstein) ----
+\begin{frame}{Price elasticity: thrift (WTP within)}
+  \begin{center}
+    \includegraphics[width=0.49\textwidth]{figures/fig_het_wtp_thrift_continuous.pdf}\hfill
+    \includegraphics[width=0.49\textwidth]{figures/fig_het_wtp_thrift_attention.pdf}
+  \end{center}
+\end{frame}
+ 
+% ---- Frame 3: orthogonalized income x thrift ----
+\begin{frame}{\large Price elasticity: orthogonalized income $\times$ thrift (WTP within)}
+  \vspace{0.4em}
+  \begin{center}
+  \small
+  \begin{tabular}{@{}lcc@{}}
+    \toprule
+     & Premium take-up & Premium valuation (\$) \\
+    \cmidrule(lr){2-2}\cmidrule(lr){3-3}
+    Income (bracket)      & $+0.050$        & $+0.415^{***}$ \\
+                          & $(0.032)$       & $(0.121)$ \\
+    \addlinespace[2pt]
+    Thrift (PCA)          & $+0.063^{***}$  & $+0.043$ \\
+                          & $(0.022)$       & $(0.075)$ \\
+    \midrule
+    Demographic controls  & Yes             & Yes \\
+    Observations          & 397             & 397 \\
+    \bottomrule
+  \end{tabular}
+  \end{center}
+  \vspace{0.2em}
+  {\footnotesize $\mathrm{corr}(\text{income},\text{thrift})=0.04$, uncorrelated.}
+\end{frame}
+ 
+% ---- Frame 4: consumption frame subgroups ----
+\begin{frame}{Price elasticity (Binary, Consumption to Buying)}
+  \begin{center}
+    \includegraphics[width=0.86\textwidth]{figures/fig_consumption_binary.pdf}
+  \end{center}
 \end{frame}
 
-\begin{frame}{Functionality splits}
-  Does the response differ by hedonic vs functional good? ?
-  \ph{functionality $\times$ \{Binary / WTP / WTA\} ?}
-  \src{D2 Fig 2 (toothpaste Binary). Extend to cookies + WTP + WTA -- all D2. ?}
-\end{frame}
 
-\begin{frame}{Orthogonalized income $\times$ thrift}
-  Holding income fixed, does thrift still matter -- and vice versa?
-  \ph{2$\times$2: (high/low income) $\times$ (high/low thrift) ?}
-  \src{New analysis (D3). Pick one outcome first. D3 Fig 11 motivates it.}
-\end{frame}
 
 % ============================================================
 \section{Roadmap}
@@ -571,11 +601,7 @@ Predict premium valuation from attention alone, take the WTA–WTP difference in
 
 % ============================================================
 \appendix
-% ============================================================
-\begin{frame}{Appendix}
-  \src{LLM prompt (D3 App B).
-  Fine-tuning LLM (next slide).}
-\end{frame}
+
 
 \begin{frame}{Appendix: Cookie brands}
   \hypertarget{app:cookies_products}{}
@@ -725,20 +751,25 @@ Predict premium valuation from attention alone, take the WTA–WTP difference in
 
 
 
-\begin{frame}{LLM measure: fine-tuned model}
-  How the continuous LLM price weight is produced. A small model that ``reasons''
-  before answering: GPT-5 writes the reasoning, GPT-4.1-mini learns to imitate it.
-  \begin{enumerate}
-    \item \textbf{Data:} 3{,}500 (text, self-reported weight) pairs as chat examples.
-      Target bin from the self-report (weight 65 $\to$ BIN\_6); the linguistic
-      analysis is GPT-5's, generated from text alone (does not see the self-report).
-    \item \textbf{Train:} supervised fine-tuning of GPT-4.1-mini (Azure), $\sim$3h;
-      learns text $\to$ analysis $+$ bin.
-    \item \textbf{Inference:} take the top-10 logprobs over the bin digit, not the argmax;
-      weight bin midpoints to a continuous 0--100 score
-      ($\sum_i \text{midpoint}_i \times p_i$).
-  \end{enumerate}
-  \src{This weight feeds the combined SR+LLM measure shown earlier. Validation.}
-\end{frame}
+\begin{frame}{LLM price weight measure: fine-tuned model}
+  A small model (GPT-4.1-mini) taught on reasoning texts, fixing:
+  \begin{itemize}
+    \item[$\bullet$] 75 is nearly 80, not fully wrong, the model needs to know some answers are closer than others.
+    \item[$\bullet$] 
+      benefits from being shown how a stronger model reads the text (explicitly elicited LLM reasoning)
+  \end{itemize}
 
+\medskip
+
+  \begin{enumerate}
+    \item Group answers into 10 buckets (weight 65 falls in bucket 6),
+      so nearby answers are treated as close.
+    \item Show the model how to think first. Before the answer, add
+      a short read of the text written by a smarter model (GPT-5).
+    \item Teach it. Train on 3500 examples of ``text $\to$ read (from superior LLM)
+      $+$ bucket (from human)''.
+    \item Turn guess back into a number (final price weight from LLM). From model's distribution over buckets, take  expected price weight.
+  \end{enumerate}
+
+\end{frame}
 \end{document}
